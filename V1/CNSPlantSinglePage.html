@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Coast Banksia — Coastal Native Supply</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --sage-900:#4a5e4d;--sage-700:#6f8470;--sage-500:#8ea08a;
+  --sage-300:#b9c4b1;--sage-100:#dee3d6;--sage-50:#eef0e7;
+  --cream:#f4ede0;--cream-2:#ece3d2;--paper:#fbf7ee;
+  --driftwood:#b9a489;--seafoam:#c8d6cd;--ocean:#2f4a52;
+  --shell:#e6d8c4;--ink:#2a2e26;
+  /* Accent — use sparingly */
+  --ochre:#c08a3e;--banksia:#a85a2c;
+  --r-sm:10px;--r-md:16px;--r-lg:22px;--r-xl:32px;--r-pill:999px;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:96px;
+  --f-display:"Outfit",system-ui,sans-serif;
+  --f-body:"DM Sans",system-ui,sans-serif;
+  --f-serif:"Fraunces",Georgia,serif;
+  --f-italic:"Cormorant Garamond",Georgia,serif;
+  --shadow-sm:0 1px 3px rgba(40,50,35,.07);
+  --shadow-md:0 4px 16px rgba(40,50,35,.09);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:var(--f-body)}
+
+/* ====== ANNOUNCEMENT BAR ====== */
+.anno{background:var(--ocean);color:var(--cream);padding:9px var(--s6);display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.anno__ticker{overflow:hidden;flex:1;white-space:nowrap;margin:0 var(--s5);mask-image:linear-gradient(90deg,transparent,black 4%,black 96%,transparent)}
+.anno__track{display:inline-flex;gap:40px;animation:ticker 38s linear infinite;padding-left:100%}
+.anno__track span{font-family:var(--f-serif);font-size:14px}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+.anno__util{display:flex;gap:18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;flex-shrink:0}
+.anno__util a{color:var(--cream);opacity:.85}
+.anno__util a:hover{opacity:1}
+.anno__tag{font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:color-mix(in oklab,var(--cream) 14%,transparent);border:1px solid color-mix(in oklab,var(--cream) 25%,transparent);padding:4px 10px;border-radius:var(--r-pill);flex-shrink:0;display:flex;align-items:center;gap:8px}
+.anno__pip{width:6px;height:6px;border-radius:50%;background:var(--banksia);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 color-mix(in oklab,var(--banksia) 60%,transparent)}50%{box-shadow:0 0 0 5px color-mix(in oklab,var(--banksia) 0%,transparent)}}
+
+/* ====== NAV ====== */
+.nav{background:var(--paper);border-bottom:1px solid color-mix(in oklab,var(--sage-500) 25%,transparent);position:sticky;top:0;z-index:100}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;padding:var(--s3) var(--s6);max-width:1380px;margin:0 auto;gap:var(--s5)}
+.nav__brand{display:flex;align-items:center;gap:14px}
+.nav__brand img{width:56px;height:56px;object-fit:contain}
+.nav__brand .wm{font-family:var(--f-display);font-weight:400;font-size:16px;letter-spacing:.06em;color:var(--sage-900);line-height:1}
+.nav__brand .wm .sub{display:block;font-family:var(--f-italic);font-style:italic;font-size:11px;color:var(--sage-700);margin-top:3px;letter-spacing:0}
+.nav__links{display:flex;gap:var(--s5);list-style:none;margin:0;padding:0}
+.nav__links a{font-family:var(--f-display);font-weight:500;font-size:14px;color:var(--sage-900);padding:8px 2px;border-bottom:1px solid transparent}
+.nav__links a:hover,.nav__links a.active{border-bottom-color:var(--sage-700)}
+.nav__cta{display:flex;gap:10px;align-items:center}
+.icon-btn{width:40px;height:40px;border-radius:50%;background:transparent;border:1px solid color-mix(in oklab,var(--sage-500) 35%,transparent);color:var(--sage-900);display:grid;place-items:center}
+.icon-btn:hover{background:var(--sage-50)}
+
+/* ====== BUTTONS ====== */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:500;font-size:14px;letter-spacing:.04em;padding:14px 22px;border-radius:var(--r-pill);border:1px solid transparent;text-decoration:none;transition:transform .15s,background .2s,color .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{width:14px;height:14px}
+.btn-primary{background:var(--sage-700);color:var(--cream)}
+.btn-primary:hover{background:var(--sage-900)}
+.btn-secondary{background:transparent;color:var(--sage-900);border-color:var(--sage-700)}
+.btn-secondary:hover{background:var(--sage-50)}
+.btn-ocean{background:var(--ocean);color:var(--cream)}
+.btn-ocean:hover{background:var(--sage-900)}
+.btn-cream{background:var(--cream);color:var(--sage-900);border:1px solid color-mix(in oklab,var(--sage-700) 28%,transparent)}
+
+/* ====== BREADCRUMB ====== */
+.breadcrumb{max-width:1380px;margin:0 auto;padding:var(--s4) var(--s6);display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-700)}
+.breadcrumb a{color:var(--sage-700)}
+.breadcrumb a:hover{color:var(--sage-900)}
+.breadcrumb .sep{opacity:.5;font-size:10px}
+
+/* ====== MAIN LAYOUT ====== */
+.plant-layout{max-width:1380px;margin:0 auto;padding:0 var(--s6) var(--s9);display:grid;grid-template-columns:1fr 400px;gap:var(--s7);align-items:start}
+
+/* ====== IMAGE SECTION ====== */
+.img-section{}
+.img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;border-radius:var(--r-lg);overflow:hidden}
+.img-tile{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer;background:var(--sage-100)}
+.img-tile.active{outline:2px solid var(--sage-700);outline-offset:-2px}
+.img-tile .ph{position:absolute;inset:0}
+.img-tile .pot-badge{position:absolute;bottom:12px;right:12px;background:rgba(42,46,38,.82);color:var(--cream);font-family:var(--f-display);font-weight:600;font-size:13px;letter-spacing:.08em;padding:5px 12px;border-radius:var(--r-pill);backdrop-filter:blur(6px)}
+.img-tile .img-zoom{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;background:rgba(42,46,38,.6);color:var(--cream);display:grid;place-items:center;opacity:0;transition:opacity .2s;backdrop-filter:blur(4px)}
+.img-tile:hover .img-zoom{opacity:1}
+
+/* full-screen gallery modal */
+.gallery-modal{position:fixed;inset:0;background:rgba(42,46,38,.92);z-index:200;display:none;place-items:center;backdrop-filter:blur(4px)}
+.gallery-modal.open{display:grid}
+.gallery-modal__inner{position:relative;max-width:90vw;max-height:90vh;display:flex;align-items:center;gap:var(--s5)}
+.gallery-modal__img{width:680px;max-width:70vw;aspect-ratio:4/3;border-radius:var(--r-lg);overflow:hidden;position:relative}
+.gallery-modal__close{position:absolute;top:var(--s5);right:var(--s5);width:44px;height:44px;border-radius:50%;background:color-mix(in oklab,var(--cream) 15%,transparent);border:1px solid color-mix(in oklab,var(--cream) 30%,transparent);color:var(--cream);display:grid;place-items:center;font-size:20px;z-index:1}
+.gallery-modal__nav{width:48px;height:48px;border-radius:50%;background:color-mix(in oklab,var(--cream) 12%,transparent);border:1px solid color-mix(in oklab,var(--cream) 25%,transparent);color:var(--cream);display:grid;place-items:center;flex-shrink:0}
+.gallery-modal__nav:hover{background:color-mix(in oklab,var(--cream) 22%,transparent)}
+
+/* thumbnails */
+.thumb-strip{display:flex;gap:8px;margin-top:var(--s4)}
+.thumb{width:80px;height:80px;border-radius:var(--r-sm);overflow:hidden;position:relative;cursor:pointer;border:2px solid transparent;transition:border-color .15s;flex-shrink:0}
+.thumb.active{border-color:var(--sage-700)}
+.thumb:hover{border-color:var(--sage-300)}
+.thumb .ph{position:absolute;inset:0}
+
+/* placeholder image palettes */
+.ph-green{background:radial-gradient(ellipse at 40% 40%,color-mix(in oklab,var(--sage-700) 55%,transparent) 0%,transparent 60%),radial-gradient(ellipse at 70% 70%,color-mix(in oklab,var(--sage-500) 70%,transparent) 0%,transparent 55%),var(--sage-100)}
+.ph-sand{background:radial-gradient(ellipse at 55% 35%,color-mix(in oklab,var(--driftwood) 60%,transparent) 0%,transparent 55%),radial-gradient(ellipse at 30% 70%,color-mix(in oklab,var(--sage-700) 45%,transparent) 0%,transparent 55%),var(--shell)}
+.ph-detail{background:radial-gradient(ellipse at 50% 50%,color-mix(in oklab,var(--sage-900) 70%,transparent) 0%,transparent 55%),radial-gradient(ellipse at 80% 20%,color-mix(in oklab,var(--sage-700) 80%,transparent) 0%,transparent 60%),var(--sage-500)}
+.ph-foliage{background:radial-gradient(ellipse at 30% 60%,color-mix(in oklab,var(--sage-900) 60%,transparent) 0%,transparent 50%),radial-gradient(ellipse at 70% 30%,color-mix(in oklab,var(--seafoam) 80%,transparent) 0%,transparent 55%),var(--sage-300)}
+
+/* ====== SIDEBAR ====== */
+.sidebar{position:sticky;top:90px;display:flex;flex-direction:column;gap:var(--s5)}
+.sidebar__eyebrow{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-700);display:flex;align-items:center;gap:8px}
+.sidebar__eyebrow .line{width:24px;height:1px;background:var(--sage-500)}
+.sidebar__common{font-family:var(--f-display);font-weight:400;font-size:38px;line-height:1.05;letter-spacing:-.02em;color:var(--sage-900);margin:0}
+.sidebar__botanical{font-family:var(--f-italic);font-style:italic;font-size:18px;color:var(--sage-700);margin:var(--s2) 0 0}
+
+/* badges */
+.badge-row{display:flex;flex-wrap:wrap;gap:6px}
+.badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 11px;border-radius:var(--r-pill);background:var(--sage-50);color:var(--sage-900);border:1px solid color-mix(in oklab,var(--sage-500) 30%,transparent)}
+.badge .dot{width:5px;height:5px;border-radius:50%;background:currentColor}
+.badge.solid{background:var(--sage-700);color:var(--cream);border-color:transparent}
+.badge.ocean{background:color-mix(in oklab,var(--ocean) 12%,white);color:var(--ocean);border-color:color-mix(in oklab,var(--ocean) 25%,transparent)}
+.badge.alert{background:color-mix(in oklab,var(--banksia) 12%,white);color:var(--banksia);border-color:color-mix(in oklab,var(--banksia) 25%,transparent)}
+.badge.ochre{background:color-mix(in oklab,var(--ochre) 14%,white);color:#7a5520;border-color:color-mix(in oklab,var(--ochre) 30%,transparent)}
+
+/* stock status */
+.stock-status{display:flex;align-items:center;gap:10px;padding:var(--s4) var(--s5);background:var(--sage-50);border-radius:var(--r-md);border:1px solid color-mix(in oklab,var(--sage-500) 25%,transparent)}
+.stock-pip{width:9px;height:9px;border-radius:50%;background:var(--sage-700);box-shadow:0 0 0 3px color-mix(in oklab,var(--sage-700) 20%,transparent)}
+.stock-label{font-family:var(--f-display);font-weight:500;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-700)}
+.stock-label em{font-style:normal;color:var(--sage-900)}
+.stock-status.low .stock-pip{background:var(--ochre);box-shadow:0 0 0 3px color-mix(in oklab,var(--ochre) 20%,transparent)}
+.stock-status.low .stock-label{color:var(--ochre)}
+
+/* pot size selector */
+.pot-section{display:flex;flex-direction:column;gap:var(--s3)}
+.pot-section h5{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-700);margin:0}
+.pot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.pot-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px var(--s3);border-radius:var(--r-md);border:1px solid color-mix(in oklab,var(--sage-500) 35%,transparent);background:var(--paper);color:var(--sage-900);font-family:var(--f-display);font-weight:500;font-size:13px;transition:background .15s,border-color .15s;cursor:pointer}
+.pot-btn .price{font-size:11px;font-weight:400;color:var(--sage-700);margin-top:2px}
+.pot-btn:hover{border-color:var(--sage-700);background:var(--sage-50)}
+.pot-btn.active{border-color:var(--sage-700);background:var(--sage-50);outline:2px solid var(--sage-700);outline-offset:-1px}
+.pot-btn.oos{opacity:.45;cursor:not-allowed}
+.pot-btn.oos .price{color:color-mix(in oklab,var(--ink) 50%,transparent)}
+
+/* price */
+.price-block{padding:var(--s5);background:var(--cream);border-radius:var(--r-lg);border:1px solid color-mix(in oklab,var(--sage-500) 25%,transparent)}
+.price-retail{display:flex;align-items:baseline;gap:var(--s3)}
+.price-retail .amount{font-family:var(--f-display);font-weight:400;font-size:36px;letter-spacing:-.02em;color:var(--sage-900)}
+.price-retail .unit{font-size:13px;color:var(--sage-700);letter-spacing:.08em;text-transform:uppercase}
+.price-trade{margin-top:var(--s3);padding-top:var(--s3);border-top:1px dashed color-mix(in oklab,var(--sage-500) 35%,transparent);display:flex;align-items:center;justify-content:space-between}
+.price-trade .lbl{font-family:var(--f-display);font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-700)}
+.price-trade .login{font-family:var(--f-italic);font-style:italic;font-size:15px;color:var(--ocean);border-bottom:1px solid var(--ocean)}
+
+/* CTA area */
+.cta-area{display:flex;flex-direction:column;gap:var(--s3)}
+.qty-row{display:flex;align-items:center;gap:var(--s4)}
+.qty{display:flex;align-items:center;border:1px solid color-mix(in oklab,var(--sage-500) 35%,transparent);border-radius:var(--r-pill);overflow:hidden}
+.qty button{width:40px;height:42px;background:transparent;border:0;font-size:18px;color:var(--sage-700);display:grid;place-items:center;transition:background .15s}
+.qty button:hover{background:var(--sage-50)}
+.qty input{width:48px;text-align:center;border:0;background:transparent;font-family:var(--f-display);font-weight:500;font-size:15px;color:var(--sage-900);outline:none}
+.qty-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-700)}
+
+/* specs table */
+.specs-table{display:grid;gap:0}
+.spec-row{display:grid;grid-template-columns:1fr 1fr;padding:var(--s3) 0;border-bottom:1px dashed color-mix(in oklab,var(--sage-500) 28%,transparent)}
+.spec-row:last-child{border-bottom:0}
+.spec-row .k{font-family:var(--f-display);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-700)}
+.spec-row .v{font-family:var(--f-display);font-weight:400;font-size:14px;color:var(--sage-900)}
+
+/* description */
+.desc-block{border-top:1px dashed color-mix(in oklab,var(--sage-500) 28%,transparent);padding-top:var(--s5)}
+.desc-block h5{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-700);margin:0 0 var(--s3)}
+.desc-block p{font-family:var(--f-serif);font-size:16px;line-height:1.6;margin:0;color:var(--ink)}
+
+/* share row */
+.share-row{display:flex;align-items:center;gap:var(--s4);padding-top:var(--s4);border-top:1px dashed color-mix(in oklab,var(--sage-500) 28%,transparent)}
+.share-row .lbl{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-700)}
+.share-icon{width:34px;height:34px;border-radius:50%;border:1px solid color-mix(in oklab,var(--sage-500) 35%,transparent);display:grid;place-items:center;color:var(--sage-700)}
+.share-icon:hover{background:var(--sage-50)}
+
+/* see more */
+.see-more{font-family:var(--f-display);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-700)}
+.see-more a{color:var(--sage-700);border-bottom:1px solid color-mix(in oklab,var(--sage-700) 40%,transparent);padding-bottom:1px}
+.see-more a:hover{color:var(--ocean);border-bottom-color:var(--ocean)}
+
+/* divider */
+.dashed-divider{border:0;border-top:1px dashed color-mix(in oklab,var(--sage-500) 30%,transparent);margin:0}
+
+/* ====== RELATED SECTION ====== */
+.related-section{max-width:1380px;margin:0 auto;padding:0 var(--s6) var(--s9)}
+.related-head{display:flex;justify-content:space-between;align-items:end;gap:var(--s5);margin-bottom:var(--s6)}
+.sec-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-700);margin-bottom:var(--s3)}
+.sec-eyebrow .line{width:28px;height:1px;background:currentColor}
+.sec-title{font-family:var(--f-display);font-weight:300;font-size:36px;line-height:1.05;letter-spacing:-.02em;color:var(--sage-900);margin:0}
+.sec-title em{font-family:var(--f-italic);font-style:italic;font-weight:400;color:var(--sage-700)}
+.plant-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s5)}
+.plant-card{background:var(--paper);border-radius:var(--r-lg);overflow:hidden;border:1px solid color-mix(in oklab,var(--sage-500) 22%,transparent);display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .25s,box-shadow .25s}
+.plant-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.plant-card .img{aspect-ratio:4/3;position:relative;overflow:hidden;background:var(--sage-100)}
+.plant-card .img-badge{position:absolute;top:10px;left:10px;font-family:var(--f-display);font-weight:600;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-pill);background:var(--sage-700);color:var(--cream)}
+.plant-card .body{padding:var(--s4) var(--s5);display:flex;flex-direction:column;gap:4px;flex:1}
+.plant-card .common{font-family:var(--f-display);font-weight:500;font-size:16px;color:var(--sage-900);margin:0}
+.plant-card .botanical{font-family:var(--f-italic);font-style:italic;font-size:13px;color:var(--sage-700);margin:0}
+.plant-card .foot{display:flex;justify-content:space-between;align-items:baseline;padding:var(--s3) var(--s5);border-top:1px dashed color-mix(in oklab,var(--sage-500) 30%,transparent);background:color-mix(in oklab,var(--cream) 50%,transparent)}
+.plant-card .stock-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-700);display:flex;align-items:center;gap:5px}
+.plant-card .stock-label .pip{width:6px;height:6px;border-radius:50%;background:var(--sage-700)}
+.plant-card .price{font-family:var(--f-display);font-weight:500;font-size:15px;color:var(--sage-900)}
+
+/* ====== FOOTER ====== */
+.footer{background:var(--ocean);color:var(--cream);padding:var(--s8) 0 var(--s5)}
+.footer__inner{max-width:1380px;margin:0 auto;padding:0 var(--s6);display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:var(--s7)}
+.footer h5{font-family:var(--f-display);font-weight:300;font-size:24px;line-height:1.05;margin:0 0 var(--s3)}
+.footer h5 em{font-family:var(--f-italic);font-style:italic;font-weight:400}
+.footer p{font-family:var(--f-serif);font-size:14px;line-height:1.55;margin:0 0 var(--s4);opacity:.85;max-width:30ch}
+.footer h6{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:color-mix(in oklab,var(--cream) 75%,transparent);margin:0 0 var(--s4)}
+.footer .col a{display:block;padding:4px 0;font-size:14px;color:var(--cream);opacity:.85}
+.footer .col a:hover{opacity:1}
+.footer__legal{max-width:1380px;margin:var(--s6) auto 0;padding:var(--s4) var(--s6) 0;border-top:1px dashed color-mix(in oklab,var(--cream) 22%,transparent);display:flex;justify-content:space-between;font-size:12px;opacity:.7}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="anno">
+  <span class="anno__tag"><span class="anno__pip"></span>Live</span>
+  <div class="anno__ticker">
+    <div class="anno__track">
+      <span>Autumn lifting now — Banksia integrifolia 200mm available.</span>
+      <span style="color:color-mix(in oklab,var(--cream) 50%,transparent)">◆</span>
+      <span>Yard open Saturday 8–12 · Marshall, Vic.</span>
+      <span style="color:color-mix(in oklab,var(--cream) 50%,transparent)">◆</span>
+      <span>Trade availability list updated weekly — <strong>sign in</strong> for pricing.</span>
+      <span style="color:color-mix(in oklab,var(--cream) 50%,transparent)">◆</span>
+      <span>Autumn lifting now — Banksia integrifolia 200mm available.</span>
+      <span style="color:color-mix(in oklab,var(--cream) 50%,transparent)">◆</span>
+    </div>
+  </div>
+  <div class="anno__util">
+    <a>03 5222 0000</a>
+    <span style="opacity:.4">·</span>
+    <a>Trade login →</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="Home Page.html">
+      <img src="assets/logo-cns-full.png" alt=""/>
+      <div class="wm">COASTAL NATIVE SUPPLY <span class="sub">Marshall · Bellarine Peninsula</span></div>
+    </a>
+    <ul class="nav__links">
+      <li><a class="active">Plants</a></li>
+      <li><a>Trade</a></li>
+      <li><a>The yard</a></li>
+      <li><a>About</a></li>
+    </ul>
+    <div class="nav__cta">
+      <button class="icon-btn" aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </button>
+      <a class="btn btn-primary" href="#" style="padding:10px 18px;font-size:13px;">Check plant stock</a>
+    </div>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="#">Home</a>
+  <span class="sep">›</span>
+  <a href="#">Plants</a>
+  <span class="sep">›</span>
+  <a href="#">Trees</a>
+  <span class="sep">›</span>
+  <span style="color:var(--sage-900)">Coast Banksia</span>
+</div>
+
+<!-- MAIN PLANT LAYOUT -->
+<div class="plant-layout">
+
+  <!-- IMAGE COLUMN -->
+  <div class="img-section">
+
+    <!-- 3-image grid (like reference: 3 equal cols, pot size badges) -->
+    <div class="img-grid" id="imgGrid">
+      <div class="img-tile" onclick="openGallery(0)">
+        <div class="ph ph-green"></div>
+        <span class="pot-badge">200mm</span>
+        <span class="img-zoom">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M8 11h6"/><path d="M11 8v6"/></svg>
+        </span>
+      </div>
+      <div class="img-tile" onclick="openGallery(1)">
+        <div class="ph ph-sand"></div>
+        <span class="pot-badge">140mm</span>
+        <span class="img-zoom">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M8 11h6"/><path d="M11 8v6"/></svg>
+        </span>
+      </div>
+      <div class="img-tile" onclick="openGallery(2)">
+        <div class="ph ph-detail"></div>
+        <span class="img-zoom">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M8 11h6"/><path d="M11 8v6"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Thumbnails -->
+    <div class="thumb-strip">
+      <div class="thumb active" onclick="setThumb(0)"><div class="ph ph-green"></div></div>
+      <div class="thumb" onclick="setThumb(1)"><div class="ph ph-sand"></div></div>
+      <div class="thumb" onclick="setThumb(2)"><div class="ph ph-detail"></div></div>
+      <div class="thumb" onclick="setThumb(3)"><div class="ph ph-foliage"></div></div>
+    </div>
+
+    <!-- Description (below images on left) -->
+    <div style="margin-top:var(--s7)">
+      <div class="sec-eyebrow"><span class="line"></span> About this plant</div>
+      <h2 style="font-family:var(--f-display);font-weight:300;font-size:28px;letter-spacing:-.01em;color:var(--sage-900);margin:0 0 var(--s4)">A tough coastal <em style="font-family:var(--f-italic);font-style:italic;font-weight:400;color:var(--sage-700)">all-rounder</em></h2>
+      <p style="font-family:var(--f-serif);font-size:17px;line-height:1.65;max-width:72ch;margin:0 0 var(--s5)">The Coast Banksia is one of the most reliable trees for exposed coastal sites. Salt-tolerant, wind-hardy, and fast-establishing, it provides year-round food for honeyeaters and provides natural windbreak character from the first season. The golden cylindrical flower spikes appear April through July, making it one of the most rewarding large trees for wildlife gardens.</p>
+      <p style="font-family:var(--f-serif);font-size:17px;line-height:1.65;max-width:72ch;margin:0">Provenance-collected seed from the Bellarine Peninsula coastal heathland community. Stock grown at our Marshall nursery and hardened to coastal conditions before lifting.</p>
+
+      <!-- Attribute badges -->
+      <div class="badge-row" style="margin-top:var(--s5)">
+        <span class="badge"><span class="dot"></span>Drought tolerant</span>
+        <span class="badge"><span class="dot"></span>Salt tolerant</span>
+        <span class="badge"><span class="dot"></span>Wind exposed</span>
+        <span class="badge"><span class="dot"></span>Bird attracting</span>
+        <span class="badge"><span class="dot"></span>Bee friendly</span>
+        <span class="badge solid">Indigenous · Bellarine</span>
+        <span class="badge ocean">Provenance verified</span>
+        <span class="badge"><span class="dot"></span>Low litter</span>
+        <span class="badge"><span class="dot"></span>Full sun</span>
+      </div>
+    </div>
+
+    <!-- Specs -->
+    <div style="margin-top:var(--s7)">
+      <div class="sec-eyebrow"><span class="line"></span> Plant specifications</div>
+      <div class="specs-table" style="margin-top:var(--s4)">
+        <div class="spec-row"><span class="k">Mature height</span><span class="v">8–15 m</span></div>
+        <div class="spec-row"><span class="k">Mature spread</span><span class="v">4–8 m</span></div>
+        <div class="spec-row"><span class="k">Form</span><span class="v">Upright tree</span></div>
+        <div class="spec-row"><span class="k">Growth rate</span><span class="v">Moderate–fast</span></div>
+        <div class="spec-row"><span class="k">Position</span><span class="v">Full sun</span></div>
+        <div class="spec-row"><span class="k">Soil</span><span class="v">Sand, loam, coastal</span></div>
+        <div class="spec-row"><span class="k">Water</span><span class="v">Low–moderate once established</span></div>
+        <div class="spec-row"><span class="k">Frost tolerance</span><span class="v">Moderate — to –3 °C</span></div>
+        <div class="spec-row"><span class="k">Flowering</span><span class="v">April–July · golden yellow</span></div>
+        <div class="spec-row"><span class="k">Family</span><span class="v">Proteaceae</span></div>
+        <div class="spec-row"><span class="k">Origin</span><span class="v">Eastern Australian coast</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar__eyebrow"><span class="line"></span> Trees &amp; canopy</div>
+    <h1 class="sidebar__common">Coast Banksia</h1>
+    <p class="sidebar__botanical">Banksia integrifolia</p>
+
+    <!-- Stock status -->
+    <div class="stock-status">
+      <span class="stock-pip"></span>
+      <span class="stock-label">In stock · <em>200mm · 2,400 available</em></span>
+    </div>
+
+    <!-- Pot size selector -->
+    <div class="pot-section">
+      <h5>Select pot size</h5>
+      <div class="pot-grid">
+        <button class="pot-btn" onclick="selectPot(this,'50mm tube','$2.20')">
+          50mm tube
+          <span class="price">$2.20</span>
+        </button>
+        <button class="pot-btn" onclick="selectPot(this,'140mm','$8.90')">
+          140mm
+          <span class="price">$8.90</span>
+        </button>
+        <button class="pot-btn active" onclick="selectPot(this,'200mm','$14.50')">
+          200mm
+          <span class="price">$14.50</span>
+        </button>
+        <button class="pot-btn oos" disabled>
+          300mm
+          <span class="price">Sep '26</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="price-block">
+      <div class="price-retail">
+        <span class="amount" id="sidebarPrice">$14.50</span>
+        <span class="unit" id="sidebarUnit">per 200mm</span>
+      </div>
+      <div class="price-trade">
+        <span class="lbl">Trade price</span>
+        <a class="login" href="#">Sign in to view</a>
+      </div>
+    </div>
+
+    <!-- Add to cart / enquiry -->
+    <div class="cta-area">
+      <div class="qty-row">
+        <div class="qty">
+          <button onclick="changeQty(-1)">−</button>
+          <input type="number" id="qtyInput" value="1" min="1"/>
+          <button onclick="changeQty(1)">+</button>
+        </div>
+        <span class="qty-label">Min. order 1 · Trade min. 10</span>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:16px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        Add to order
+      </button>
+      <button class="btn btn-secondary" style="width:100%;justify-content:center;padding:14px">
+        Add to enquiry list
+      </button>
+    </div>
+
+    <hr class="dashed-divider"/>
+
+    <!-- Compact specs -->
+    <div class="specs-table">
+      <div class="spec-row"><span class="k">Mature size</span><span class="v">8–15 m × 4–8 m</span></div>
+      <div class="spec-row"><span class="k">Position</span><span class="v">Full sun</span></div>
+      <div class="spec-row"><span class="k">Flowering</span><span class="v">Apr–Jul</span></div>
+      <div class="spec-row"><span class="k">Water</span><span class="v">Low once established</span></div>
+    </div>
+
+    <hr class="dashed-divider"/>
+
+    <!-- Category -->
+    <div class="see-more">See more: <a href="#">Trees &amp; canopy</a> · <a href="#">Salt tolerant</a> · <a href="#">Wildlife</a></div>
+
+    <!-- Share -->
+    <div class="share-row">
+      <span class="lbl">Share</span>
+      <a class="share-icon" aria-label="Facebook">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a class="share-icon" aria-label="Pinterest">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8.1-2.1.2-3l1.4-5.8s-.3-.7-.3-1.7c0-1.6.9-2.8 2.3-2.8 1.1 0 1.6.8 1.6 1.8 0 1.1-.7 2.7-1 4.2-.3 1.2.6 2.2 1.8 2.2 2.1 0 3.5-2.7 3.5-5.9 0-2.4-1.6-4.2-4.5-4.2-3.3 0-5.3 2.4-5.3 5.1 0 .9.3 1.6.6 2.1.1.1.1.2.1.3l-.3 1c0 .1-.1.2-.2.1C8.4 14.3 7 12.5 7 10.2c0-3.5 2.9-7.7 8.7-7.7 4.6 0 7.6 3.4 7.6 7 0 4.8-2.6 8.3-6.5 8.3-1.3 0-2.5-.7-2.9-1.5l-.8 3c-.3 1-.9 2-1.4 2.8.9.3 1.8.5 2.8.5A10 10 0 0 0 12 2z"/></svg>
+      </a>
+      <a class="share-icon" aria-label="Copy link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </a>
+    </div>
+
+    <!-- Trade note -->
+    <div style="background:var(--sage-50);border-radius:var(--r-md);padding:var(--s4);border:1px solid color-mix(in oklab,var(--sage-500) 25%,transparent)">
+      <div style="font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-700);margin-bottom:var(--s2)">Contract growing</div>
+      <p style="font-family:var(--f-serif);font-size:14px;line-height:1.5;margin:0;color:var(--ink)">Need 2,000+ of this species for a project? We grow to order. Lead time 6–12 months. <a href="#" style="color:var(--ocean);border-bottom:1px solid color-mix(in oklab,var(--ocean) 40%,transparent)">Talk to us →</a></p>
+    </div>
+
+  </aside>
+</div>
+
+<!-- GALLERY MODAL -->
+<div class="gallery-modal" id="galleryModal" onclick="closeGallery(event)">
+  <div class="gallery-modal__inner">
+    <button class="gallery-modal__nav" onclick="event.stopPropagation();shiftGallery(-1)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="gallery-modal__img" id="galleryImg">
+      <div class="ph ph-green" style="position:absolute;inset:0"></div>
+      <button class="gallery-modal__close" onclick="closeGallery()">×</button>
+    </div>
+    <button class="gallery-modal__nav" onclick="event.stopPropagation();shiftGallery(1)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- RELATED PLANTS -->
+<section class="related-section">
+  <div class="related-head">
+    <div>
+      <div class="sec-eyebrow"><span class="line"></span> You might also like</div>
+      <h2 class="sec-title">Other <em>coastal trees</em></h2>
+    </div>
+    <a class="btn btn-secondary" href="#">View all trees
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+  <div class="plant-grid">
+    <a class="plant-card" href="#">
+      <div class="img"><div class="ph ph-sand" style="position:absolute;inset:0"></div><span class="img-badge">Indigenous</span></div>
+      <div class="body"><h3 class="common">Moonah</h3><p class="botanical">Melaleuca lanceolata</p></div>
+      <div class="foot"><span class="stock-label"><span class="pip"></span>In stock</span><span class="price">$12.80</span></div>
+    </a>
+    <a class="plant-card" href="#">
+      <div class="img"><div class="ph ph-foliage" style="position:absolute;inset:0"></div><span class="img-badge" style="background:var(--ocean)">Provenance</span></div>
+      <div class="body"><h3 class="common">Drooping Sheoak</h3><p class="botanical">Allocasuarina verticillata</p></div>
+      <div class="foot"><span class="stock-label"><span class="pip"></span>In stock</span><span class="price">$9.60</span></div>
+    </a>
+    <a class="plant-card" href="#">
+      <div class="img"><div class="ph ph-green" style="position:absolute;inset:0"></div><span class="img-badge">Indigenous</span></div>
+      <div class="body"><h3 class="common">Swamp Paperbark</h3><p class="botanical">Melaleuca ericifolia</p></div>
+      <div class="foot"><span class="stock-label"><span class="pip" style="background:var(--ochre)"></span>Low stock</span><span class="price">$11.20</span></div>
+    </a>
+    <a class="plant-card" href="#">
+      <div class="img"><div class="ph ph-detail" style="position:absolute;inset:0"></div><span class="img-badge">Indigenous</span></div>
+      <div class="body"><h3 class="common">Bull Oak</h3><p class="botanical">Allocasuarina luehmannii</p></div>
+      <div class="foot"><span class="stock-label"><span class="pip"></span>In stock</span><span class="price">$10.40</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <h5>Coastal Native <em>Supply</em></h5>
+      <p>Indigenous and locally adapted plants, grown on the Bellarine for revegetation, landscape, and home gardens across the Surf Coast.</p>
+    </div>
+    <div class="col"><h6>Plants</h6><a>All plants</a><a>Trees</a><a>Shrubs</a><a>Grasses &amp; sedges</a><a>Groundcovers</a><a>Tubestock</a></div>
+    <div class="col"><h6>Trade</h6><a>Availability list</a><a>Contract growing</a><a>Trade login</a></div>
+    <div class="col"><h6>The yard</h6><a>Visit us</a><a>Hours &amp; directions</a><a>Journal</a><a>Contact</a></div>
+  </div>
+  <div class="footer__legal">
+    <span>© 2026 Coastal Native Supply Pty Ltd</span>
+    <span>Marshall · Bellarine Peninsula · Wadawurrung Country</span>
+  </div>
+</footer>
+
+<script>
+const phs = ['ph-green','ph-sand','ph-detail','ph-foliage'];
+const pots = ['50mm tube','140mm','200mm','300mm'];
+const prices = ['$2.20','$8.90','$14.50','—'];
+
+function setThumb(i){
+  document.querySelectorAll('.thumb').forEach((t,j)=>t.classList.toggle('active',j===i));
+  // swap the first image tile placeholder to selected
+  const first = document.querySelector('.img-tile .ph');
+  first.className = 'ph '+phs[i];
+}
+
+function selectPot(btn, label, price){
+  document.querySelectorAll('.pot-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('sidebarPrice').textContent = price;
+  document.getElementById('sidebarUnit').textContent = 'per '+label;
+}
+
+function changeQty(d){
+  const i = document.getElementById('qtyInput');
+  const v = Math.max(1, parseInt(i.value||1)+d);
+  i.value = v;
+}
+
+let galleryIdx = 0;
+function openGallery(i){
+  galleryIdx = i;
+  document.getElementById('galleryModal').classList.add('open');
+  document.getElementById('galleryImg').querySelector('.ph').className = 'ph '+phs[i];
+}
+function closeGallery(e){
+  if(!e||e.target===document.getElementById('galleryModal')){
+    document.getElementById('galleryModal').classList.remove('open');
+  }
+}
+function shiftGallery(d){
+  galleryIdx = (galleryIdx+d+phs.length)%phs.length;
+  document.getElementById('galleryImg').querySelector('.ph').className = 'ph '+phs[galleryIdx];
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeGallery();
+  if(e.key==='ArrowLeft')shiftGallery(-1);
+  if(e.key==='ArrowRight')shiftGallery(1);
+});
+</script>
+</body>
+</html>

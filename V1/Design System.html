@@ -1,0 +1,2292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Coastal Native Supply — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     CNS — Tokens
+     Direction A (Foreshore) locked as system palette
+     Ochre + Banksia = accent only — use at <5% of any surface
+     ============================================================ */
+  :root {
+    /* Brand sage from logo */
+    --sage-900: #4a5e4d;
+    --sage-700: #6f8470;
+    --sage-500: #8ea08a;     /* logo sage */
+    --sage-300: #b9c4b1;
+    --sage-100: #dee3d6;
+    --sage-50:  #eef0e7;
+
+    /* Direction A — Foreshore (coastal) */
+    --A-cream:     #f4ede0;  /* logo background cream */
+    --A-cream-2:   #ece3d2;
+    --A-paper:     #fbf7ee;
+    --A-driftwood: #b9a489;
+    --A-seafoam:   #c8d6cd;
+    --A-ocean:     #2f4a52;
+    --A-shell:     #e6d8c4;
+    --A-ink:       #2a2e26;
+
+    /* Accent — use VERY sparingly: alerts, sale, urgency only */
+    --ochre:       #c08a3e;   /* warm gold — seasonal / sale */
+    --banksia:     #a85a2c;   /* burnt orange — alert / out of stock */
+
+    /* Direction B — Hinterland (archived — not selected) */
+    --B-bone:      #efe9dc;
+    --B-bone-2:    #e3dccb;
+    --B-paper:     #f7f2e6;
+    --B-bark:      #6b4f3a;
+    --B-ochre:     #c08a3e;
+    --B-banksia:   #a85a2c;
+    --B-eucalypt:  #2e3a2a;
+    --B-stone:     #b8b29f;
+    --B-ink:       #1f231d;
+
+    /* Shape */
+    --r-xs: 6px;
+    --r-sm: 10px;
+    --r-md: 16px;
+    --r-lg: 22px;
+    --r-xl: 32px;
+    --r-pill: 999px;
+
+    /* Spacing scale (4px base) */
+    --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px;
+    --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px;
+    --s9: 96px;
+
+    /* Type */
+    --f-display: "Outfit", system-ui, sans-serif;
+    --f-body:    "DM Sans", system-ui, sans-serif;
+    --f-serif:   "Fraunces", Georgia, serif;
+    --f-italic:  "Cormorant Garamond", Georgia, serif;
+
+    /* Shadow (very soft, paper-like) */
+    --shadow-sm: 0 1px 2px rgba(40, 50, 35, 0.06), 0 2px 6px rgba(40, 50, 35, 0.04);
+    --shadow-md: 0 4px 16px rgba(40, 50, 35, 0.08);
+    --shadow-lg: 0 12px 40px rgba(40, 50, 35, 0.10);
+  }
+
+  /* ---------- Base ---------- */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--f-body);
+    color: var(--A-ink);
+    background: var(--A-paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.55;
+  }
+
+  .page-shell {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--s8) var(--s6) var(--s9);
+  }
+
+  /* ---------- Top brand strip ---------- */
+  .top-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--s5) var(--s6);
+    border-bottom: 1px solid color-mix(in oklab, var(--sage-500) 35%, transparent);
+    background: var(--A-paper);
+  }
+  .top-strip .mono {
+    font-family: var(--f-body);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+  }
+  .top-strip .crumb {
+    display: flex;
+    gap: var(--s5);
+    color: var(--sage-700);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Header / hero ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--s7);
+    align-items: center;
+    padding: var(--s9) 0 var(--s8);
+    border-bottom: 1px dashed color-mix(in oklab, var(--sage-500) 50%, transparent);
+  }
+  .hero h1 {
+    font-family: var(--f-display);
+    font-weight: 300;
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--s5);
+    color: var(--sage-900);
+  }
+  .hero h1 em {
+    font-family: var(--f-italic);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--sage-700);
+  }
+  .hero p.lede {
+    font-family: var(--f-serif);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--A-ink);
+    max-width: 52ch;
+    margin: 0 0 var(--s6);
+  }
+  .hero .meta {
+    display: flex;
+    gap: var(--s5);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+  }
+  .hero .meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .hero .meta .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--sage-500); display: inline-block; }
+  .hero-logo {
+    background: var(--A-cream);
+    border-radius: var(--r-xl);
+    padding: var(--s7);
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1.05 / 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-logo img { width: 86%; height: auto; display: block; }
+  .hero-logo::before, .hero-logo::after {
+    /* dotted arc accents */
+    content: "";
+    position: absolute;
+    border: 1px dashed var(--sage-300);
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+  .hero-logo::before { inset: 8px; }
+  .hero-logo::after { inset: 22px; opacity: 0.4; }
+
+  /* ---------- Section heading ---------- */
+  .sec {
+    padding: var(--s9) 0 var(--s7);
+    border-bottom: 1px dashed color-mix(in oklab, var(--sage-500) 40%, transparent);
+  }
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s5);
+    margin-bottom: var(--s7);
+  }
+  .sec-num {
+    font-family: var(--f-italic);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--sage-700);
+  }
+  .sec-title {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: clamp(28px, 3.4vw, 44px);
+    letter-spacing: -0.015em;
+    color: var(--sage-900);
+    margin: 0;
+    flex: 1;
+  }
+  .sec-title em {
+    font-family: var(--f-italic);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--sage-700);
+  }
+  .sec-kicker {
+    font-family: var(--f-body);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+    text-align: right;
+    max-width: 28ch;
+  }
+
+  /* ============================================================
+     LOGO
+     ============================================================ */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: var(--s5);
+  }
+  .logo-card {
+    border-radius: var(--r-lg);
+    padding: var(--s6);
+    aspect-ratio: 4/3;
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .logo-card .label {
+    position: absolute;
+    top: var(--s4);
+    left: var(--s4);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .logo-card img { max-width: 76%; max-height: 76%; display: block; }
+  .lc-cream  { background: var(--A-cream); color: var(--sage-900); }
+  .lc-sage   { background: var(--sage-500); color: var(--A-cream); }
+  .lc-ocean  { background: var(--A-ocean); color: var(--A-cream); }
+  .lc-cream img, .lc-sage img, .lc-ocean img {
+    /* keep logo as-is for cream; tinted variants drawn inline below */
+  }
+  .logo-rules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s5);
+    margin-top: var(--s5);
+  }
+  .rule {
+    border: 1px solid color-mix(in oklab, var(--sage-500) 30%, transparent);
+    border-radius: var(--r-md);
+    padding: var(--s5);
+    background: var(--A-paper);
+  }
+  .rule h4 {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0 0 var(--s2);
+    color: var(--sage-900);
+  }
+  .rule p {
+    font-size: 14px;
+    margin: 0;
+    color: color-mix(in oklab, var(--A-ink) 75%, transparent);
+  }
+  .rule.bad { border-color: #c97a5d; }
+  .rule.bad h4::before { content: "✕  "; color: #c97a5d; }
+  .rule.good h4::before { content: "✓  "; color: var(--sage-700); }
+
+  /* ============================================================
+     COLOUR — two directions side by side
+     ============================================================ */
+  /* Decision callout — section 02 */
+  .decision {
+    display: flex;
+    gap: var(--s5);
+    align-items: stretch;
+    background: var(--A-cream);
+    border: 1px solid color-mix(in oklab, var(--A-ocean) 30%, transparent);
+    border-radius: var(--r-lg);
+    padding: var(--s5) var(--s6);
+    margin-bottom: var(--s7);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  .decision::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: var(--A-ocean);
+  }
+  .decision__rail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding-left: 6px;
+  }
+  .decision__rail-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--A-ocean);
+    opacity: 0.5;
+  }
+  .decision__rail-dot:nth-child(2) { opacity: 0.8; }
+  .decision__rail-dot:nth-child(3) { opacity: 1; }
+  .decision__body { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .decision__eyebrow {
+    font-family: var(--f-body);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--A-ocean);
+  }
+  .decision__eyebrow--locked { color: var(--sage-700); }
+  .decision--locked {
+    background: var(--sage-50);
+    border-color: color-mix(in oklab, var(--sage-700) 35%, transparent);
+  }
+  .decision--locked::before { background: var(--sage-700); }
+  .decision__text {
+    font-family: var(--f-serif);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--A-ink);
+    margin: 0;
+  }
+  .decision__text strong {
+    font-family: var(--f-display);
+    font-weight: 600;
+    color: var(--A-ocean);
+  }
+  .decision__pill {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: var(--r-pill);
+    vertical-align: 3px;
+    margin: 0 2px;
+  }
+  .decision__pill--A { background: var(--A-ocean); color: var(--A-cream); }
+  .decision__pill--B { background: var(--B-banksia); color: var(--B-bone); }
+  .decision__amp {
+    font-family: var(--f-italic);
+    font-style: italic;
+    color: var(--sage-700);
+    margin: 0 4px;
+  }
+
+  .palette-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s6);
+  }
+  .accent-section { margin-top: var(--s7); }
+  .accent-section__head { display: grid; grid-template-columns: 1fr auto; gap: var(--s6); align-items: start; margin-bottom: var(--s6); }
+  .accent-rule { background: color-mix(in oklab, var(--banksia) 8%, var(--A-paper)); border: 1px solid color-mix(in oklab, var(--banksia) 25%, transparent); border-radius: var(--r-md); padding: var(--s4) var(--s5); max-width: 280px; }
+  .accent-rule__label { font-family: var(--f-display); font-weight: 600; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--banksia); margin-bottom: 6px; }
+  .accent-rule__text { font-family: var(--f-serif); font-size: 14px; line-height: 1.5; margin: 0; color: var(--A-ink); }
+  .accent-swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); }
+  .accent-swatch { background: var(--A-paper); border: 1px solid color-mix(in oklab, var(--sage-500) 22%, transparent); border-radius: var(--r-lg); padding: var(--s5); display: flex; flex-direction: column; gap: var(--s4); }
+  .accent-swatch__chip { height: 80px; border-radius: var(--r-md); }
+  .accent-swatch__name { font-family: var(--f-display); font-weight: 500; font-size: 18px; color: var(--sage-900); }
+  .accent-swatch__hex { font-family: var(--f-body); font-size: 12px; letter-spacing: .06em; color: var(--sage-700); }
+  .accent-swatch__use { font-family: var(--f-body); font-size: 13px; color: color-mix(in oklab, var(--A-ink) 70%, transparent); }
+  .accent-swatch__demo { display: flex; flex-wrap: wrap; gap: 6px; }
+  .accent-badge { display: inline-flex; align-items: center; font-family: var(--f-display); font-weight: 500; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; padding: 5px 11px; border-radius: var(--r-pill); border: 1px solid transparent; }
+  .palette {
+    border-radius: var(--r-lg);
+    padding: var(--s6);
+    border: 1px solid color-mix(in oklab, var(--sage-500) 25%, transparent);
+  }
+  .palette--A { background: var(--A-paper); }
+  .palette--B {
+    background: var(--B-paper);
+    color: var(--B-ink);
+    --sage-700: #5e7560;
+    opacity: 0.5;
+    filter: saturate(0.65);
+    pointer-events: none;
+  }
+  .tag--retired {
+    background: color-mix(in oklab, var(--B-stone) 50%, white) !important;
+    color: var(--B-bark) !important;
+    border: 1px solid color-mix(in oklab, var(--B-stone) 40%, transparent) !important;
+    box-shadow: none !important;
+  }
+  .palette h3 {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    margin: 0 0 var(--s1);
+  }
+  .palette h3 em {
+    font-family: var(--f-italic);
+    font-style: italic;
+    color: var(--sage-700);
+  }
+  .palette .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: var(--r-pill);
+    margin-bottom: var(--s5);
+    box-shadow: var(--shadow-sm);
+  }
+  .palette .tag .pip { width: 8px; height: 8px; border-radius: 50%; background: currentColor; opacity: 0.9; }
+  .palette--A .tag {
+    background: var(--A-ocean);
+    color: var(--A-cream);
+  }
+  .palette--B .tag {
+    background: var(--B-banksia);
+    color: var(--B-bone);
+  }
+  .palette .tag .vs {
+    font-family: var(--f-italic);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    opacity: 0.85;
+    margin-left: 2px;
+    font-size: 13px;
+  }
+  .palette p.desc {
+    font-family: var(--f-serif);
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0 0 var(--s5);
+    max-width: 42ch;
+  }
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s3);
+  }
+  .sw {
+    border-radius: var(--r-md);
+    padding: var(--s4);
+    aspect-ratio: 4/3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .sw .nm {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .sw .hex {
+    font-family: var(--f-body);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    opacity: 0.85;
+  }
+  .sw.lg { grid-column: span 2; aspect-ratio: 8/3; }
+
+  /* ============================================================
+     TYPE
+     ============================================================ */
+  .type-stack { display: grid; gap: var(--s5); }
+  .type-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--s6);
+    padding: var(--s5) 0;
+    border-top: 1px solid color-mix(in oklab, var(--sage-500) 20%, transparent);
+    align-items: baseline;
+  }
+  .type-row:first-child { border-top: 0; }
+  .type-row .meta {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+    line-height: 1.6;
+  }
+  .type-row .meta strong {
+    display: block;
+    color: var(--sage-900);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+  }
+  .type-row .sample { color: var(--A-ink); }
+  .ts-display {
+    font-family: var(--f-display);
+    font-weight: 300;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--sage-900);
+  }
+  .ts-display em { font-family: var(--f-italic); font-style: italic; font-weight: 400; color: var(--sage-700); }
+  .ts-h1 { font-family: var(--f-display); font-weight: 400; font-size: 48px; line-height: 1.05; letter-spacing: -0.015em; color: var(--sage-900); }
+  .ts-h2 { font-family: var(--f-display); font-weight: 400; font-size: 32px; line-height: 1.15; letter-spacing: -0.01em; color: var(--sage-900); }
+  .ts-h3 { font-family: var(--f-display); font-weight: 500; font-size: 22px; line-height: 1.25; color: var(--sage-900); }
+  .ts-lede { font-family: var(--f-serif); font-weight: 400; font-size: 22px; line-height: 1.45; }
+  .ts-body { font-family: var(--f-body); font-size: 16px; line-height: 1.6; }
+  .ts-small { font-family: var(--f-body); font-size: 13px; line-height: 1.5; color: color-mix(in oklab, var(--A-ink) 70%, transparent); }
+  .ts-eyebrow { font-family: var(--f-body); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage-700); }
+  .ts-quote { font-family: var(--f-italic); font-style: italic; font-weight: 400; font-size: 28px; line-height: 1.35; color: var(--sage-700); }
+
+  /* ============================================================
+     MOTIFS — dotted/stippled accents
+     ============================================================ */
+  .motif-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s5);
+  }
+  .motif {
+    aspect-ratio: 1/1;
+    background: var(--A-cream);
+    border-radius: var(--r-lg);
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .motif .name {
+    position: absolute;
+    bottom: var(--s4);
+    left: var(--s4);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+  }
+
+  /* ============================================================
+     COMPONENTS
+     ============================================================ */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s6);
+  }
+  .comp {
+    background: var(--A-paper);
+    border: 1px solid color-mix(in oklab, var(--sage-500) 25%, transparent);
+    border-radius: var(--r-lg);
+    padding: var(--s6);
+  }
+  .comp h4 {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+    margin: 0 0 var(--s5);
+  }
+  .comp.full { grid-column: span 2; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    padding: 14px 22px;
+    border-radius: var(--r-pill);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform .15s ease, background .2s, color .2s, border-color .2s;
+    text-decoration: none;
+  }
+  .btn svg { width: 14px; height: 14px; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--sage-700); color: var(--A-cream); }
+  .btn-primary:hover { background: var(--sage-900); }
+  .btn-secondary { background: transparent; color: var(--sage-900); border-color: var(--sage-700); }
+  .btn-secondary:hover { background: var(--sage-50); }
+  .btn-ghost { background: transparent; color: var(--sage-900); padding: 14px 6px; border-radius: 0; border-bottom: 1px solid var(--sage-700); }
+  .btn-ghost:hover { color: var(--sage-700); }
+  .btn-cream { background: var(--A-cream); color: var(--sage-900); border: 1px solid color-mix(in oklab, var(--sage-700) 30%, transparent); }
+  .btn-icon { width: 44px; height: 44px; padding: 0; justify-content: center; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: var(--s3); align-items: center; }
+  .btn-row + .btn-row { margin-top: var(--s4); }
+
+  /* Forms */
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--s4); }
+  .field label {
+    font-family: var(--f-body);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+    font-weight: 500;
+  }
+  .field input, .field select, .field textarea {
+    font-family: var(--f-body);
+    font-size: 15px;
+    padding: 12px 16px;
+    border: 1px solid color-mix(in oklab, var(--sage-500) 40%, transparent);
+    border-radius: var(--r-md);
+    background: var(--A-paper);
+    color: var(--A-ink);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--sage-700);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--sage-500) 20%, transparent);
+  }
+  .field .hint { font-size: 12px; color: color-mix(in oklab, var(--A-ink) 60%, transparent); }
+  .check-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; cursor: pointer; }
+  .check-row input { accent-color: var(--sage-700); width: 18px; height: 18px; }
+  .check-row .lbl { font-size: 14px; }
+  .check-row .count { margin-left: auto; font-size: 12px; color: color-mix(in oklab, var(--A-ink) 55%, transparent); font-variant-numeric: tabular-nums; }
+  .search-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--A-paper);
+    border: 1px solid color-mix(in oklab, var(--sage-500) 35%, transparent);
+    border-radius: var(--r-pill);
+    padding: 6px 6px 6px 18px;
+  }
+  .search-pill input {
+    border: 0;
+    background: transparent;
+    flex: 1;
+    padding: 10px 0;
+    font-size: 15px;
+    outline: none;
+    color: var(--A-ink);
+  }
+  .search-pill .btn { padding: 10px 18px; }
+
+  /* Badges */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: var(--r-pill);
+    background: var(--sage-50);
+    color: var(--sage-900);
+    border: 1px solid color-mix(in oklab, var(--sage-500) 30%, transparent);
+  }
+  .badge svg { width: 12px; height: 12px; }
+  .badge.solid-sage { background: var(--sage-700); color: var(--A-cream); border-color: transparent; }
+  .badge.cream { background: var(--A-cream); color: var(--sage-900); border-color: color-mix(in oklab, var(--sage-700) 25%, transparent); }
+  .badge.ocean { background: color-mix(in oklab, var(--A-ocean) 12%, white); color: var(--A-ocean); border-color: color-mix(in oklab, var(--A-ocean) 25%, transparent); }
+  .badge.driftwood { background: color-mix(in oklab, var(--A-driftwood) 18%, white); color: #6b5538; border-color: color-mix(in oklab, var(--A-driftwood) 35%, transparent); }
+  .badge.outline { background: transparent; }
+  .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .badge-row + .badge-row { margin-top: var(--s3); }
+
+  /* Plant card */
+  .plant-card {
+    background: var(--A-paper);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--sage-500) 22%, transparent);
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .plant-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .plant-card .img {
+    aspect-ratio: 4/3;
+    background: var(--sage-100);
+    position: relative;
+    overflow: hidden;
+  }
+  .plant-card .img .ph {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 60%, color-mix(in oklab, var(--sage-700) 40%, transparent) 0%, transparent 55%),
+      radial-gradient(ellipse at 75% 40%, color-mix(in oklab, var(--sage-500) 60%, transparent) 0%, transparent 60%),
+      var(--sage-100);
+  }
+  .plant-card .img-badges {
+    position: absolute;
+    top: var(--s3);
+    left: var(--s3);
+    display: flex;
+    gap: 6px;
+  }
+  .plant-card .save {
+    position: absolute;
+    top: var(--s3);
+    right: var(--s3);
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(244, 237, 224, 0.92);
+    display: grid; place-items: center;
+    color: var(--sage-700);
+    border: 0;
+    cursor: pointer;
+  }
+  .plant-card .body { padding: var(--s5); display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .plant-card .common {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--sage-900);
+    margin: 0;
+    line-height: 1.2;
+  }
+  .plant-card .botanical {
+    font-family: var(--f-italic);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--sage-700);
+    margin: 0;
+  }
+  .plant-card .specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px 8px;
+    padding-top: 10px;
+    border-top: 1px dashed color-mix(in oklab, var(--sage-500) 35%, transparent);
+    margin-top: 4px;
+  }
+  .plant-card .spec {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+  }
+  .plant-card .spec .k {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+    margin-bottom: 2px;
+  }
+  .plant-card .spec .v {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--sage-900);
+  }
+  .plant-card .badge-row { margin-top: 2px; }
+  .plant-card .foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: var(--s4) var(--s5);
+    border-top: 1px dashed color-mix(in oklab, var(--sage-500) 35%, transparent);
+    background: color-mix(in oklab, var(--A-cream) 50%, transparent);
+  }
+  .plant-card .stock {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .plant-card .stock .pip { width: 7px; height: 7px; border-radius: 50%; background: var(--sage-700); }
+  .plant-card .price {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--sage-900);
+  }
+  .plant-card .price .unit { font-size: 11px; color: var(--sage-700); font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* Plant card variant — list/spec row */
+  .plant-row {
+    display: grid;
+    grid-template-columns: 80px 1.2fr repeat(4, 1fr) auto;
+    gap: var(--s4);
+    align-items: center;
+    padding: var(--s4) var(--s5);
+    background: var(--A-paper);
+    border: 1px solid color-mix(in oklab, var(--sage-500) 22%, transparent);
+    border-radius: var(--r-md);
+  }
+  .plant-row + .plant-row { margin-top: 8px; }
+  .plant-row .thumb { width: 64px; height: 64px; border-radius: var(--r-sm); background: linear-gradient(135deg, var(--sage-300), var(--sage-700)); }
+  .plant-row .nm-block .common { margin: 0; font-family: var(--f-display); font-weight: 500; font-size: 16px; color: var(--sage-900); }
+  .plant-row .nm-block .botanical { margin: 0; font-family: var(--f-italic); font-style: italic; font-size: 13px; color: var(--sage-700); }
+  .plant-row .cell { font-size: 13px; color: var(--A-ink); }
+  .plant-row .cell .k { display: block; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage-700); margin-bottom: 2px; }
+
+  /* Filter rail */
+  .filter-rail {
+    background: var(--A-paper);
+    border: 1px solid color-mix(in oklab, var(--sage-500) 22%, transparent);
+    border-radius: var(--r-lg);
+    padding: var(--s5);
+  }
+  .filter-rail .group { padding: var(--s4) 0; border-top: 1px solid color-mix(in oklab, var(--sage-500) 18%, transparent); }
+  .filter-rail .group:first-child { border-top: 0; padding-top: 0; }
+  .filter-rail .group h5 {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+    margin: 0 0 var(--s3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .filter-rail .group h5 .clear { font-family: var(--f-italic); font-style: italic; font-size: 12px; color: var(--sage-700); text-transform: none; letter-spacing: 0; cursor: pointer; }
+  .chip-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 12px;
+    padding: 7px 12px;
+    border-radius: var(--r-pill);
+    background: var(--A-cream);
+    color: var(--sage-900);
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .chip.active { background: var(--sage-700); color: var(--A-cream); }
+  .chip .x { opacity: .7; }
+  .range {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .range .track {
+    flex: 1;
+    height: 4px;
+    background: color-mix(in oklab, var(--sage-500) 25%, transparent);
+    border-radius: 2px;
+    position: relative;
+  }
+  .range .track .fill { position: absolute; left: 18%; right: 35%; top: 0; bottom: 0; background: var(--sage-700); border-radius: 2px; }
+  .range .track .knob { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; background: var(--A-cream); border: 2px solid var(--sage-700); border-radius: 50%; }
+  .range .track .knob.k1 { left: 18%; }
+  .range .track .knob.k2 { left: 65%; }
+  .range .vals { font-size: 12px; color: var(--sage-700); font-variant-numeric: tabular-nums; min-width: 88px; text-align: right; }
+
+  /* Nav / header */
+  .nav {
+    background: var(--A-paper);
+    border-bottom: 1px solid color-mix(in oklab, var(--sage-500) 25%, transparent);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .nav .util {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px var(--s5);
+    background: var(--sage-700);
+    color: var(--A-cream);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .nav .util a { color: var(--A-cream); text-decoration: none; opacity: 0.85; }
+  .nav .util .ic { display: inline-flex; gap: 14px; }
+  .nav .main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--s4) var(--s5);
+    gap: var(--s5);
+  }
+  .nav .brand { display: flex; align-items: center; gap: 12px; }
+  .nav .brand img { width: 56px; height: 56px; object-fit: contain; }
+  .nav .brand .wm {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    color: var(--sage-900);
+    line-height: 1;
+  }
+  .nav .brand .wm .sub { display: block; font-family: var(--f-italic); font-style: italic; font-size: 12px; color: var(--sage-700); margin-top: 2px; letter-spacing: 0; }
+  .nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--s5);
+    margin: 0; padding: 0;
+  }
+  .nav ul a {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--sage-900);
+    text-decoration: none;
+    padding: 8px 4px;
+    border-bottom: 1px solid transparent;
+  }
+  .nav ul a.active { border-bottom-color: var(--sage-700); }
+  .nav .cta { display: flex; gap: 10px; align-items: center; }
+
+  /* Footer */
+  .footer {
+    background: var(--A-ocean);
+    color: var(--A-cream);
+    border-radius: var(--r-lg);
+    padding: var(--s7) var(--s6) var(--s5);
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: var(--s6);
+    position: relative;
+    overflow: hidden;
+  }
+  .footer .col h6 {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--A-cream) 75%, transparent);
+    margin: 0 0 var(--s4);
+  }
+  .footer .col a { display: block; color: var(--A-cream); text-decoration: none; padding: 4px 0; font-size: 14px; opacity: 0.85; }
+  .footer .col a:hover { opacity: 1; }
+  .footer .brand-col h5 {
+    font-family: var(--f-display);
+    font-weight: 300;
+    font-size: 28px;
+    margin: 0 0 var(--s3);
+    line-height: 1.05;
+  }
+  .footer .brand-col h5 em { font-family: var(--f-italic); font-style: italic; font-weight: 400; }
+  .footer .brand-col p { font-family: var(--f-serif); font-size: 14px; line-height: 1.55; margin: 0 0 var(--s4); opacity: 0.85; max-width: 32ch; }
+  .footer .legal {
+    grid-column: span 4;
+    border-top: 1px dashed color-mix(in oklab, var(--A-cream) 25%, transparent);
+    padding-top: var(--s4);
+    margin-top: var(--s4);
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    opacity: 0.7;
+    letter-spacing: 0.06em;
+  }
+
+  /* Section header components */
+  .sh {
+    background: var(--A-paper);
+    border-radius: var(--r-lg);
+    padding: var(--s7) var(--s6);
+    border: 1px solid color-mix(in oklab, var(--sage-500) 22%, transparent);
+    position: relative;
+    overflow: hidden;
+  }
+  .sh.sage { background: var(--sage-50); }
+  .sh.cream { background: var(--A-cream); }
+  .sh.ocean { background: var(--A-ocean); color: var(--A-cream); }
+  .sh.ocean .sh-eyebrow, .sh.ocean .sh-title, .sh.ocean .sh-lede { color: var(--A-cream); }
+  .sh-eyebrow {
+    font-family: var(--f-body);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+    margin-bottom: var(--s3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sh-eyebrow .line { display: inline-block; width: 32px; height: 1px; background: currentColor; }
+  .sh-title {
+    font-family: var(--f-display);
+    font-weight: 300;
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--sage-900);
+    margin: 0 0 var(--s3);
+    max-width: 16ch;
+  }
+  .sh-title em { font-family: var(--f-italic); font-style: italic; font-weight: 400; color: var(--sage-700); }
+  .sh.ocean .sh-title em { color: color-mix(in oklab, var(--A-cream) 75%, transparent); }
+  .sh-lede {
+    font-family: var(--f-serif);
+    font-size: 17px;
+    line-height: 1.55;
+    color: color-mix(in oklab, var(--A-ink) 80%, transparent);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  /* Voice/tone box */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s5);
+  }
+  .voice-card {
+    background: var(--A-paper);
+    border: 1px solid color-mix(in oklab, var(--sage-500) 25%, transparent);
+    border-radius: var(--r-lg);
+    padding: var(--s6);
+  }
+  .voice-card h5 {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+    margin: 0 0 var(--s3);
+  }
+  .voice-card .yes, .voice-card .no {
+    font-family: var(--f-italic);
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.4;
+    color: var(--A-ink);
+    margin: 0 0 var(--s3);
+    padding-left: var(--s4);
+    border-left: 2px solid var(--sage-500);
+  }
+  .voice-card .no { color: color-mix(in oklab, var(--A-ink) 50%, transparent); border-left-color: color-mix(in oklab, #c97a5d 60%, transparent); text-decoration: line-through; text-decoration-color: color-mix(in oklab, #c97a5d 50%, transparent); }
+  .voice-card label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+    margin-bottom: 6px;
+  }
+
+  /* Misc */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s5); }
+
+  .filter-demo { display: grid; grid-template-columns: 280px 1fr; gap: var(--s5); }
+
+  /* Dotted divider */
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: var(--s5) 0;
+  }
+  .dots span { width: 4px; height: 4px; border-radius: 50%; background: var(--sage-500); }
+
+  /* TOC */
+  .toc {
+    position: sticky;
+    top: var(--s5);
+    align-self: start;
+    border-left: 1px solid color-mix(in oklab, var(--sage-500) 30%, transparent);
+    padding: 4px 0 4px var(--s4);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage-700);
+    line-height: 2;
+  }
+  .toc a { display: block; color: var(--sage-700); text-decoration: none; padding: 2px 0; }
+  .toc a:hover { color: var(--sage-900); }
+
+  .with-toc { display: grid; grid-template-columns: 180px 1fr; gap: var(--s7); }
+
+  @media (max-width: 880px) {
+    .hero, .palette-wrap, .comp-grid, .grid-2, .grid-3, .grid-4, .footer, .voice-grid, .filter-demo, .with-toc { grid-template-columns: 1fr !important; }
+    .logo-grid { grid-template-columns: 1fr; }
+    .toc { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-strip">
+  <div class="mono">CNS — Brand &amp; design system</div>
+  <div class="crumb">
+    <span>v 0.1</span>
+    <span>April 2026</span>
+    <span>For review</span>
+  </div>
+</div>
+
+<div class="page-shell">
+
+  <!-- =========================================================
+       HERO
+  ========================================================= -->
+  <header class="hero">
+    <div>
+      <div class="ts-eyebrow" style="margin-bottom: 18px;">Coastal Native Supply · Brand system</div>
+      <h1>Grown <em>by</em> the coast,<br/>specified <em>for</em> the trade.</h1>
+      <p class="lede">A working design system for a coastal native nursery — built around the new wordmark. Two palette directions to compare; one shared shape, type and component vocabulary across both.</p>
+      <div class="meta">
+        <span><span class="dot"></span> Logo</span>
+        <span><span class="dot"></span> Two palettes</span>
+        <span><span class="dot"></span> Type</span>
+        <span><span class="dot"></span> Components</span>
+        <span><span class="dot"></span> Motifs &amp; voice</span>
+      </div>
+    </div>
+    <div class="hero-logo">
+      <img src="assets/logo-cns-full.png" alt="Coastal Native Supply logo" />
+    </div>
+  </header>
+
+  <div class="with-toc">
+    <nav class="toc" aria-label="On this page">
+      <a href="#logo">01 Logo</a>
+      <a href="#colour">02 Colour</a>
+      <a href="#type">03 Type</a>
+      <a href="#motif">04 Motif</a>
+      <a href="#shape">05 Shape</a>
+      <a href="#button">06 Button</a>
+      <a href="#form">07 Form</a>
+      <a href="#badge">08 Badge</a>
+      <a href="#card">09 Plant card</a>
+      <a href="#filter">10 Filter</a>
+      <a href="#nav">11 Nav</a>
+      <a href="#section">12 Section</a>
+      <a href="#footer">13 Footer</a>
+      <a href="#voice">14 Voice</a>
+    </nav>
+
+  <main>
+
+  <!-- =========================================================
+       01 LOGO
+  ========================================================= -->
+  <section class="sec" id="logo">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title">The <em>logo</em>, and how it breathes</h2>
+      </div>
+      <div class="sec-kicker">Cream is the home colour. Always give the illustration room.</div>
+    </div>
+
+    <div class="logo-grid">
+      <div class="logo-card lc-cream">
+        <span class="label">Primary · cream</span>
+        <img src="assets/logo-cns-full.png" alt="Logo on cream"/>
+      </div>
+      <div class="logo-card lc-sage">
+        <span class="label">Reverse · sage</span>
+        <!-- Inline SVG redraw at scale, cream-on-sage -->
+        <svg viewBox="0 0 240 200" width="100%" style="max-width:78%" aria-hidden="true">
+          <g fill="none" stroke="#f4ede0" stroke-width="1.4" stroke-linecap="round">
+            <path d="M40,100 a85,85 0 1,1 170,0" stroke-dasharray="2 4" />
+            <path d="M55,135 q35,-35 80,-25 q40,8 65,40" />
+            <path d="M70,150 q40,-15 80,-5" stroke-dasharray="1 3" />
+          </g>
+          <g fill="#f4ede0" font-family="Fraunces, serif" font-size="22" text-anchor="middle" letter-spacing="2">
+            <text x="135" y="85">COASTAL</text>
+            <text x="135" y="112">NATIVE</text>
+            <text x="135" y="139">SUPPLY</text>
+          </g>
+        </svg>
+      </div>
+      <div class="logo-card lc-ocean">
+        <span class="label">Deep · ocean</span>
+        <svg viewBox="0 0 240 200" width="100%" style="max-width:78%" aria-hidden="true">
+          <g fill="none" stroke="#c8d6cd" stroke-width="1.4" stroke-linecap="round">
+            <path d="M40,100 a85,85 0 1,1 170,0" stroke-dasharray="2 4" />
+            <path d="M55,135 q35,-35 80,-25 q40,8 65,40" />
+            <path d="M70,150 q40,-15 80,-5" stroke-dasharray="1 3" />
+          </g>
+          <g fill="#c8d6cd" font-family="Fraunces, serif" font-size="22" text-anchor="middle" letter-spacing="2">
+            <text x="135" y="85">COASTAL</text>
+            <text x="135" y="112">NATIVE</text>
+            <text x="135" y="139">SUPPLY</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="logo-rules">
+      <div class="rule good">
+        <h4>Clear space</h4>
+        <p>Keep at least the height of "C" in COASTAL clear on every side. The illustration's wave + leaves are part of the mark — never crop them.</p>
+      </div>
+      <div class="rule good">
+        <h4>Minimum size</h4>
+        <p>Full lockup: 56px tall on screen, 22mm in print. Below that, use the wave-and-leaf bug alone with a separate wordmark.</p>
+      </div>
+      <div class="rule bad">
+        <h4>Don't stretch or recolour the linework</h4>
+        <p>The illustration is hand-drawn — it should always sit on cream, sage, or deep ocean. Avoid placing on photographs without a tinted plate behind it.</p>
+      </div>
+      <div class="rule bad">
+        <h4>Don't add a tagline inside the wreath</h4>
+        <p>If a tagline is needed, set it underneath in the serif italic. The wreath stays as the mark drew it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       02 COLOUR — two palette directions
+  ========================================================= -->
+  <section class="sec" id="colour">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title">System <em>palette</em> — Direction A locked</h2>
+      </div>
+    </div>
+
+    <div class="decision decision--locked">
+      <div class="decision__rail" aria-hidden="true">
+        <span class="decision__rail-dot"></span>
+        <span class="decision__rail-dot"></span>
+        <span class="decision__rail-dot"></span>
+      </div>
+      <div class="decision__body">
+        <span class="decision__eyebrow decision__eyebrow--locked">✓  Direction A selected — locked in</span>
+        <p class="decision__text">
+          <span class="decision__pill decision__pill--A">A · Foreshore · System palette</span>&ensp; Cream, sage, seafoam, driftwood, ocean. Direction B archived below. Ochre + Banksia added as accent layer.
+        </p>
+      </div>
+    </div>
+
+    <div class="palette-wrap">
+
+      <!-- Direction A — Foreshore -->
+      <div class="palette palette--A">
+        <div class="tag"><span class="pip"></span> System palette <span class="vs">· Direction A · Locked ✓</span></div>
+        <h3>Foreshore <em>— coastal &amp; airy</em></h3>
+        <p class="desc">Pulls the wave half of the logo forward. Sand, cream, sage, sea-foam, deep ocean. Light and breath-y; reads retail, soft and welcoming.</p>
+
+        <div class="swatches">
+          <div class="sw lg" style="background: var(--A-cream); color: var(--A-ink);">
+            <div class="nm">Cream <span style="font-family: var(--f-italic); font-style: italic; color: var(--sage-700); font-weight: 400;">— home base</span></div>
+            <div class="hex">#F4EDE0 · A-cream</div>
+          </div>
+          <div class="sw" style="background: var(--A-paper); color: var(--A-ink); border: 1px solid color-mix(in oklab, var(--sage-500) 22%, transparent);">
+            <div class="nm">Paper</div>
+            <div class="hex">#FBF7EE</div>
+          </div>
+          <div class="sw" style="background: var(--A-cream-2); color: var(--A-ink);">
+            <div class="nm">Cream 2</div>
+            <div class="hex">#ECE3D2</div>
+          </div>
+          <div class="sw" style="background: var(--sage-500); color: var(--A-cream);">
+            <div class="nm">Sage <span style="font-family: var(--f-italic); font-style: italic; opacity: 0.85; font-weight: 400;">— logo</span></div>
+            <div class="hex">#8EA08A</div>
+          </div>
+          <div class="sw" style="background: var(--sage-700); color: var(--A-cream);">
+            <div class="nm">Sage 700</div>
+            <div class="hex">#6F8470</div>
+          </div>
+          <div class="sw" style="background: var(--sage-900); color: var(--A-cream);">
+            <div class="nm">Sage 900</div>
+            <div class="hex">#4A5E4D</div>
+          </div>
+          <div class="sw" style="background: var(--A-seafoam); color: #2f4a52;">
+            <div class="nm">Seafoam</div>
+            <div class="hex">#C8D6CD</div>
+          </div>
+          <div class="sw" style="background: var(--A-driftwood); color: #2a2218;">
+            <div class="nm">Driftwood</div>
+            <div class="hex">#B9A489</div>
+          </div>
+          <div class="sw" style="background: var(--A-shell); color: #2a2218;">
+            <div class="nm">Shell</div>
+            <div class="hex">#E6D8C4</div>
+          </div>
+          <div class="sw lg" style="background: var(--A-ocean); color: var(--A-cream);">
+            <div class="nm">Ocean <span style="font-family: var(--f-italic); font-style: italic; opacity: 0.7; font-weight: 400;">— deep accent / footers</span></div>
+            <div class="hex">#2F4A52</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Direction B — Hinterland -->
+      <div class="palette palette--B">
+        <div class="tag tag--retired"><span class="pip" style="background:var(--B-stone)"></span> Archived <span class="vs">· Direction B · Not selected</span></div>
+        <h3>Hinterland <em>— bush &amp; grounded</em></h3>
+        <p class="desc">Pulls the leaf-wreath half forward. Bone, bark, ochre, banksia, deep eucalypt. Earthier and more catalog-y; reads trade, serious, native-bush.</p>
+
+        <div class="swatches">
+          <div class="sw lg" style="background: var(--B-bone); color: var(--B-ink);">
+            <div class="nm">Bone <span style="font-family: var(--f-italic); font-style: italic; color: #5e7560; font-weight: 400;">— home base</span></div>
+            <div class="hex">#EFE9DC · B-bone</div>
+          </div>
+          <div class="sw" style="background: var(--B-paper); color: var(--B-ink); border: 1px solid color-mix(in oklab, #5e7560 22%, transparent);">
+            <div class="nm">Paper</div>
+            <div class="hex">#F7F2E6</div>
+          </div>
+          <div class="sw" style="background: var(--B-bone-2); color: var(--B-ink);">
+            <div class="nm">Bone 2</div>
+            <div class="hex">#E3DCCB</div>
+          </div>
+          <div class="sw" style="background: var(--sage-500); color: var(--B-bone);">
+            <div class="nm">Sage <span style="font-family: var(--f-italic); font-style: italic; opacity: 0.85; font-weight: 400;">— logo</span></div>
+            <div class="hex">#8EA08A</div>
+          </div>
+          <div class="sw" style="background: #5e7560; color: var(--B-bone);">
+            <div class="nm">Sage 700</div>
+            <div class="hex">#5E7560</div>
+          </div>
+          <div class="sw" style="background: var(--B-eucalypt); color: var(--B-bone);">
+            <div class="nm">Eucalypt 900</div>
+            <div class="hex">#2E3A2A</div>
+          </div>
+          <div class="sw" style="background: var(--B-bark); color: var(--B-bone);">
+            <div class="nm">Bark</div>
+            <div class="hex">#6B4F3A</div>
+          </div>
+          <div class="sw" style="background: var(--B-ochre); color: var(--B-eucalypt);">
+            <div class="nm">Ochre</div>
+            <div class="hex">#C08A3E</div>
+          </div>
+          <div class="sw" style="background: var(--B-stone); color: var(--B-eucalypt);">
+            <div class="nm">Stone</div>
+            <div class="hex">#B8B29F</div>
+          </div>
+          <div class="sw lg" style="background: var(--B-banksia); color: var(--B-bone);">
+            <div class="nm">Banksia <span style="font-family: var(--f-italic); font-style: italic; opacity: 0.8; font-weight: 400;">— accent / sale &amp; alerts</span></div>
+            <div class="hex">#A85A2C</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- Usage rules -->
+    <div class="grid-3" style="margin-top: var(--s5);">
+      <div class="rule good">
+        <h4>60 / 30 / 10</h4>
+        <p>60% home base (cream/bone) · 30% sage family · 10% deep accent (ocean/eucalypt) plus sparse use of the warm accent (driftwood/banksia) for sale, urgency, or seasonal callouts.</p>
+      </div>
+      <div class="rule good">
+        <h4>One palette per surface</h4>
+        <p>Don't mix Foreshore and Hinterland in the same view. They're sister directions; pick one for retail, one for trade if needed — never both at once.</p>
+      </div>
+      <div class="rule good">
+        <h4>Sage stays sage</h4>
+        <p>The logo sage (#8EA08A) is the shared anchor. Cream, seafoam, driftwood and ocean extend it. Ochre and Banksia are accent-only — never backgrounds.</p>
+      </div>
+    </div>
+
+    <!-- ACCENT LAYER -->
+    <div class="accent-section">
+      <div class="accent-section__head">
+        <div>
+          <div style="font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-700);margin-bottom:var(--s3)">Accent layer — use minimally</div>
+          <h3 style="font-family:var(--f-display);font-weight:400;font-size:30px;letter-spacing:-.01em;color:var(--sage-900);margin:0 0 var(--s3)">Ochre &amp; <em style="font-family:var(--f-italic);font-style:italic;font-weight:400;color:var(--banksia)">Banksia</em></h3>
+          <p style="font-family:var(--f-serif);font-size:16px;line-height:1.5;max-width:56ch;margin:0;color:color-mix(in oklab,var(--A-ink) 80%,transparent)">Two warm tones from the native heathland palette. Use at under 5% of any surface — exclusively for sale flags, urgency cues, stock alerts and seasonal highlights. Never as a body background or primary button fill.</p>
+        </div>
+        <div class="accent-rule">
+          <div class="accent-rule__label">Rule of thumb</div>
+          <p class="accent-rule__text">If you're unsure whether to use it — don't. One accent element per page is usually enough.</p>
+        </div>
+      </div>
+
+      <div class="accent-swatches">
+        <div class="accent-swatch">
+          <div class="accent-swatch__chip" style="background:var(--ochre)"></div>
+          <div>
+            <div class="accent-swatch__name">Ochre</div>
+            <div class="accent-swatch__hex">#C08A3E</div>
+            <div class="accent-swatch__use">Sale · Seasonal · New arrival · Low stock</div>
+          </div>
+          <div class="accent-swatch__demo">
+            <span class="accent-badge" style="background:color-mix(in oklab,var(--ochre) 14%,white);color:#7a5520;border-color:color-mix(in oklab,var(--ochre) 32%,transparent)">Low stock — 12 left</span>
+            <span class="accent-badge" style="background:color-mix(in oklab,var(--ochre) 14%,white);color:#7a5520;border-color:color-mix(in oklab,var(--ochre) 32%,transparent)">Available May 2026</span>
+            <span class="accent-badge" style="background:var(--ochre);color:var(--A-cream);border-color:transparent">Seasonal</span>
+          </div>
+        </div>
+        <div class="accent-swatch">
+          <div class="accent-swatch__chip" style="background:var(--banksia)"></div>
+          <div>
+            <div class="accent-swatch__name">Banksia</div>
+            <div class="accent-swatch__hex">#A85A2C</div>
+            <div class="accent-swatch__use">Alert · Out of stock · Order cut-off · Urgency</div>
+          </div>
+          <div class="accent-swatch__demo">
+            <span class="accent-badge" style="background:color-mix(in oklab,var(--banksia) 12%,white);color:var(--banksia);border-color:color-mix(in oklab,var(--banksia) 28%,transparent)">Order cut-off 2 May</span>
+            <span class="accent-badge" style="background:color-mix(in oklab,var(--banksia) 12%,white);color:var(--banksia);border-color:color-mix(in oklab,var(--banksia) 28%,transparent)">Out of stock</span>
+            <span class="accent-badge" style="background:var(--banksia);color:var(--A-cream);border-color:transparent">Alert</span>
+          </div>
+        </div>
+        <div class="accent-swatch">
+          <div style="display:flex;gap:4px;height:80px;border-radius:var(--r-md);overflow:hidden">
+            <div style="flex:1;background:#b9a489"></div>
+            <div style="flex:1;background:#c5b39c"></div>
+            <div style="flex:1;background:#d1c1af"></div>
+            <div style="flex:1;background:#dcd1c2"></div>
+            <div style="flex:1;background:#e8e0d6"></div>
+            <div style="flex:1;background:#f3efeb"></div>
+            <div style="flex:1;background:#f9f7f5"></div>
+            <div style="flex:1;background:#ffffff;border:1px solid color-mix(in oklab,var(--sage-500) 20%,transparent)"></div>
+          </div>
+          <div>
+            <div class="accent-swatch__name">Driftwood ramp</div>
+            <div class="accent-swatch__hex">#B9A489 → #FFFFFF · 8 steps</div>
+            <div class="accent-swatch__use">Section tinting · gradient backgrounds · hover states</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--s5);padding:var(--s4) var(--s5);background:color-mix(in oklab,var(--banksia) 8%,var(--A-paper));border:1px solid color-mix(in oklab,var(--banksia) 22%,transparent);border-radius:var(--r-md);display:flex;align-items:center;gap:var(--s5)">
+        <span style="font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--banksia);flex-shrink:0">✕  Never do this</span>
+        <span style="font-family:var(--f-serif);font-size:15px;color:var(--A-ink)">Don't use ochre or banksia as a section background, primary button fill, or decorative element. They must earn their place through function — urgency, scarcity, or a time-sensitive offer.</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- =========================================================
+       03 TYPE
+  ========================================================= -->
+  <section class="sec" id="type">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title">Type — <em>sans display, serif accents</em></h2>
+      </div>
+      <div class="sec-kicker">Outfit carries headlines &amp; UI · Fraunces / Cormorant Italic for editorial moments · DM Sans for body</div>
+    </div>
+
+    <div class="type-stack">
+      <div class="type-row">
+        <div class="meta"><strong>Display</strong>Outfit · 300<br/>72px · -2.5%</div>
+        <div class="sample ts-display">Native plants, <em>specified</em>.</div>
+      </div>
+      <div class="type-row">
+        <div class="meta"><strong>H1</strong>Outfit · 400<br/>48px · -1.5%</div>
+        <div class="sample ts-h1">Coastal stock, ready to ship</div>
+      </div>
+      <div class="type-row">
+        <div class="meta"><strong>H2</strong>Outfit · 400<br/>32px · -1%</div>
+        <div class="sample ts-h2">Wholesale availability — autumn 2026</div>
+      </div>
+      <div class="type-row">
+        <div class="meta"><strong>H3</strong>Outfit · 500<br/>22px</div>
+        <div class="sample ts-h3">Banksia integrifolia · Coast Banksia</div>
+      </div>
+      <div class="type-row">
+        <div class="meta"><strong>Lede</strong>Fraunces · 400<br/>22px / 1.45</div>
+        <div class="sample ts-lede">Hardy, low-water, salt-tolerant — ready in 200mm and 300mm pots, year-round. Order by 2pm for next-day pickup at our Marshall yard.</div>
+      </div>
+      <div class="type-row">
+        <div class="meta"><strong>Body</strong>DM Sans · 400<br/>16px / 1.6</div>
+        <div class="sample ts-body">Coastal Native Supply grows revegetation-grade indigenous stock for landscapers, councils, and Landcare projects across the Bellarine Peninsula and Surf Coast. Tubestock, advanced, and contract-grown.</div>
+      </div>
+      <div class="type-row">
+        <div class="meta"><strong>Small / caption</strong>DM Sans · 400<br/>13px</div>
+        <div class="sample ts-small">Available in 50mm tubestock · 140mm · 200mm · 300mm · 45L bag. Trade pricing visible after sign-in.</div>
+      </div>
+      <div class="type-row">
+        <div class="meta"><strong>Eyebrow / label</strong>DM Sans · 500<br/>11px · 22% tracking</div>
+        <div class="sample ts-eyebrow">Trade login · Availability list · Visit the yard</div>
+      </div>
+      <div class="type-row">
+        <div class="meta"><strong>Editorial italic</strong>Cormorant · 400<br/>28px / 1.35</div>
+        <div class="sample ts-quote">"Grown the slow way, on the same stretch of coast they'll be planted on."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       04 MOTIF
+  ========================================================= -->
+  <section class="sec" id="motif">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">04</span>
+        <h2 class="sec-title">Dotted &amp; <em>stippled</em> motifs</h2>
+      </div>
+      <div class="sec-kicker">Drawn from the dot-work in the logo — use as dividers, accents, and section cues</div>
+    </div>
+
+    <div class="motif-grid">
+      <!-- Dotted arc -->
+      <div class="motif">
+        <svg viewBox="0 0 200 200" width="80%" aria-hidden="true">
+          <g stroke="#6f8470" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="1 6" fill="none">
+            <path d="M30,170 a85,85 0 0,1 140,0" />
+            <path d="M50,170 a65,65 0 0,1 100,0" />
+            <path d="M70,170 a45,45 0 0,1 60,0" />
+          </g>
+        </svg>
+        <span class="name">Dotted arcs</span>
+      </div>
+      <!-- Stippled wave -->
+      <div class="motif">
+        <svg viewBox="0 0 200 200" width="84%" aria-hidden="true">
+          <g stroke="#6f8470" stroke-width="1.5" fill="none" stroke-linecap="round">
+            <path d="M20,100 q20,-20 40,0 t40,0 t40,0 t40,0" />
+            <path d="M20,120 q20,-15 40,0 t40,0 t40,0 t40,0" stroke-dasharray="1 4" />
+            <path d="M20,140 q20,-12 40,0 t40,0 t40,0 t40,0" stroke-dasharray="1 5" opacity="0.6" />
+          </g>
+        </svg>
+        <span class="name">Stippled wave</span>
+      </div>
+      <!-- Leaf sprig -->
+      <div class="motif">
+        <svg viewBox="0 0 200 200" width="72%" aria-hidden="true">
+          <g stroke="#6f8470" stroke-width="1.4" fill="none" stroke-linecap="round">
+            <path d="M100,30 q4,80 0,150" />
+            <path d="M100,60 q-30,8 -45,30 q25,-2 45,-12" />
+            <path d="M100,90 q30,8 45,30 q-25,-2 -45,-12" />
+            <path d="M100,120 q-30,8 -45,30 q25,-2 45,-12" />
+            <path d="M100,150 q30,8 45,30 q-25,-2 -45,-12" />
+          </g>
+        </svg>
+        <span class="name">Leaf sprig</span>
+      </div>
+      <!-- Dot field -->
+      <div class="motif">
+        <svg viewBox="0 0 200 200" width="84%" aria-hidden="true">
+          <g fill="#6f8470">
+            <!-- gradient density of dots -->
+            <circle cx="20" cy="180" r="1.5"/><circle cx="40" cy="170" r="1.5"/><circle cx="60" cy="175" r="1.2"/>
+            <circle cx="80" cy="165" r="1.5"/><circle cx="100" cy="172" r="1.2"/><circle cx="120" cy="168" r="1.5"/>
+            <circle cx="30" cy="155" r="1.2"/><circle cx="55" cy="150" r="1.5"/><circle cx="85" cy="148" r="1.2"/>
+            <circle cx="110" cy="145" r="1.5"/><circle cx="140" cy="155" r="1.2"/><circle cx="160" cy="160" r="1.5"/>
+            <circle cx="45" cy="130" r="1.2"/><circle cx="75" cy="125" r="1.2"/><circle cx="105" cy="120" r="1.5"/>
+            <circle cx="135" cy="125" r="1.2"/><circle cx="165" cy="135" r="1"/>
+            <circle cx="65" cy="100" r="1"/><circle cx="95" cy="95" r="1.2"/><circle cx="125" cy="100" r="1"/>
+            <circle cx="85" cy="70" r="1"/><circle cx="115" cy="75" r="1"/>
+            <circle cx="100" cy="50" r="0.8"/>
+          </g>
+        </svg>
+        <span class="name">Dot field</span>
+      </div>
+      <!-- Arch frame -->
+      <div class="motif">
+        <svg viewBox="0 0 200 200" width="80%" aria-hidden="true">
+          <g stroke="#6f8470" stroke-width="1.4" fill="none">
+            <path d="M40,180 L40,80 a60,60 0 0,1 120,0 L160,180 Z" />
+            <path d="M50,170 L50,82 a50,50 0 0,1 100,0 L150,170" stroke-dasharray="1 5" opacity="0.6" />
+          </g>
+        </svg>
+        <span class="name">Arch frame</span>
+      </div>
+      <!-- Hairline + dot rule -->
+      <div class="motif">
+        <svg viewBox="0 0 200 60" width="84%" aria-hidden="true" style="aspect-ratio: 200/60; height: auto;">
+          <g stroke="#6f8470" stroke-width="1.4" fill="#6f8470">
+            <line x1="10" y1="30" x2="80" y2="30" stroke-linecap="round"/>
+            <circle cx="100" cy="30" r="2.5"/>
+            <line x1="120" y1="30" x2="190" y2="30" stroke-linecap="round"/>
+          </g>
+        </svg>
+        <span class="name">Hairline + dot</span>
+      </div>
+      <!-- Sun rise -->
+      <div class="motif">
+        <svg viewBox="0 0 200 200" width="84%" aria-hidden="true">
+          <g stroke="#6f8470" stroke-width="1.4" fill="none" stroke-linecap="round">
+            <path d="M40,140 a60,60 0 0,1 120,0" />
+            <line x1="100" y1="40" x2="100" y2="55" stroke-dasharray="1 4"/>
+            <line x1="55" y1="60" x2="65" y2="70"/>
+            <line x1="145" y1="60" x2="135" y2="70"/>
+            <line x1="30" y1="100" x2="45" y2="100" stroke-dasharray="1 4"/>
+            <line x1="155" y1="100" x2="170" y2="100" stroke-dasharray="1 4"/>
+            <line x1="20" y1="155" x2="180" y2="155"/>
+            <line x1="20" y1="170" x2="180" y2="170" stroke-dasharray="1 5" opacity="0.6"/>
+          </g>
+        </svg>
+        <span class="name">Horizon</span>
+      </div>
+      <!-- Tag corner -->
+      <div class="motif">
+        <svg viewBox="0 0 200 200" width="80%" aria-hidden="true">
+          <g stroke="#6f8470" stroke-width="1.4" fill="none">
+            <path d="M30,30 L130,30 L170,70 L170,170 L30,170 Z"/>
+            <circle cx="155" cy="55" r="3" fill="#6f8470"/>
+            <line x1="50" y1="100" x2="150" y2="100" stroke-dasharray="1 4"/>
+            <line x1="50" y1="120" x2="120" y2="120" stroke-dasharray="1 4"/>
+          </g>
+        </svg>
+        <span class="name">Plant tag</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       05 SHAPE / RADIUS
+  ========================================================= -->
+  <section class="sec" id="shape">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">05</span>
+        <h2 class="sec-title">Shape &amp; <em>radius</em></h2>
+      </div>
+      <div class="sec-kicker">Soft, generous corners on most surfaces. Pills for action. No hard 0px edges.</div>
+    </div>
+    <div class="grid-4">
+      <div class="rule" style="text-align: center;">
+        <div style="width: 88px; height: 88px; background: var(--sage-100); border-radius: 6px; margin: 0 auto var(--s3);"></div>
+        <h4>XS · 6px</h4>
+        <p>Inputs, small chips, tag corners</p>
+      </div>
+      <div class="rule" style="text-align: center;">
+        <div style="width: 88px; height: 88px; background: var(--sage-100); border-radius: 16px; margin: 0 auto var(--s3);"></div>
+        <h4>MD · 16px</h4>
+        <p>Cards, panels, image frames</p>
+      </div>
+      <div class="rule" style="text-align: center;">
+        <div style="width: 88px; height: 88px; background: var(--sage-100); border-radius: 22px; margin: 0 auto var(--s3);"></div>
+        <h4>LG · 22px</h4>
+        <p>Hero blocks, plant cards, navs, footer</p>
+      </div>
+      <div class="rule" style="text-align: center;">
+        <div style="width: 140px; height: 56px; background: var(--sage-100); border-radius: 999px; margin: 16px auto var(--s3);"></div>
+        <h4>Pill · ∞</h4>
+        <p>Buttons, badges, search, chips</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       06 BUTTONS
+  ========================================================= -->
+  <section class="sec" id="button">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">06</span>
+        <h2 class="sec-title">Buttons</h2>
+      </div>
+      <div class="sec-kicker">Pill-shaped. Sage primary, outlined secondary, ghost for inline links.</div>
+    </div>
+
+    <div class="comp-grid">
+      <div class="comp">
+        <h4>Primary &amp; secondary</h4>
+        <div class="btn-row">
+          <button class="btn btn-primary">Browse availability
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="btn btn-secondary">View trade list</button>
+          <button class="btn btn-cream">Add to enquiry</button>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-ghost">Read about our nursery</button>
+          <button class="btn btn-icon btn-secondary" aria-label="Save">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="btn btn-icon btn-primary" aria-label="Cart">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="comp">
+        <h4>Sizes &amp; states</h4>
+        <div class="btn-row">
+          <button class="btn btn-primary" style="padding: 10px 16px; font-size: 13px;">Small</button>
+          <button class="btn btn-primary">Default</button>
+          <button class="btn btn-primary" style="padding: 18px 28px; font-size: 16px;">Large</button>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary">Default</button>
+          <button class="btn btn-primary" style="background: var(--sage-900);">Hover</button>
+          <button class="btn btn-primary" style="opacity: 0.45; cursor: not-allowed;">Disabled</button>
+          <button class="btn btn-secondary" style="background: var(--sage-50);">Hover</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       07 FORM
+  ========================================================= -->
+  <section class="sec" id="form">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">07</span>
+        <h2 class="sec-title">Forms &amp; <em>inputs</em></h2>
+      </div>
+      <div class="sec-kicker">All radius-md, soft sage focus ring. Labels uppercased + tracked.</div>
+    </div>
+
+    <div class="comp-grid">
+      <div class="comp">
+        <h4>Trade enquiry — fields</h4>
+        <div class="grid-2" style="gap: var(--s3);">
+          <div class="field">
+            <label for="f1">Company / project</label>
+            <input id="f1" type="text" value="Surf Coast Shire Council" />
+          </div>
+          <div class="field">
+            <label for="f2">Contact</label>
+            <input id="f2" type="text" placeholder="Your name" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="f3">Project type</label>
+          <select id="f3">
+            <option>Revegetation / Landcare</option>
+            <option>Commercial landscape</option>
+            <option>Residential design</option>
+            <option>Council / civic</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f4">Notes</label>
+          <textarea id="f4" rows="3" placeholder="Site location, soil, exposure, target plant date…"></textarea>
+          <span class="hint">We grow contract orders 6–18 months ahead of plant date.</span>
+        </div>
+        <div class="btn-row" style="margin-top: var(--s3);">
+          <button class="btn btn-primary">Send enquiry</button>
+          <button class="btn btn-ghost">or call the yard</button>
+        </div>
+      </div>
+
+      <div class="comp">
+        <h4>Search &amp; pickers</h4>
+        <div class="search-pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sage-700)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="text" value="Banksia" />
+          <button class="btn btn-primary">Search</button>
+        </div>
+
+        <div style="margin-top: var(--s5);">
+          <label class="check-row">
+            <input type="checkbox" checked />
+            <span class="lbl">Drought tolerant</span>
+            <span class="count">214</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" checked />
+            <span class="lbl">Salt tolerant</span>
+            <span class="count">88</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" />
+            <span class="lbl">Frost hardy (-5 °C)</span>
+            <span class="count">156</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" />
+            <span class="lbl">Indigenous to Bellarine &amp; Surf Coast</span>
+            <span class="count">312</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       08 BADGES / TAGS
+  ========================================================= -->
+  <section class="sec" id="badge">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">08</span>
+        <h2 class="sec-title">Badges &amp; <em>tags</em></h2>
+      </div>
+      <div class="sec-kicker">For attributes, certifications, stock state, sale flags.</div>
+    </div>
+
+    <div class="comp full">
+      <h4>Plant attributes — soft / quiet</h4>
+      <div class="badge-row">
+        <span class="badge"><span class="dot"></span> Drought tolerant</span>
+        <span class="badge"><span class="dot"></span> Salt tolerant</span>
+        <span class="badge"><span class="dot"></span> Frost hardy</span>
+        <span class="badge"><span class="dot"></span> Full sun</span>
+        <span class="badge"><span class="dot"></span> Part shade</span>
+        <span class="badge"><span class="dot"></span> Wind exposed</span>
+        <span class="badge"><span class="dot"></span> Bird attracting</span>
+        <span class="badge"><span class="dot"></span> Bee friendly</span>
+        <span class="badge"><span class="dot"></span> Low litter</span>
+        <span class="badge"><span class="dot"></span> Coastal</span>
+      </div>
+
+      <h4 style="margin-top: var(--s5);">Origin / certification — solid</h4>
+      <div class="badge-row">
+        <span class="badge solid-sage">Indigenous · Bellarine</span>
+        <span class="badge solid-sage">Locally grown</span>
+        <span class="badge ocean">Provenance verified</span>
+        <span class="badge driftwood">Contract grown</span>
+        <span class="badge cream">In stock — yard</span>
+        <span class="badge outline" style="color: #a85a2c; border-color: color-mix(in oklab, #a85a2c 35%, transparent);"><span class="dot"></span> Sale · seasonal</span>
+        <span class="badge outline" style="color: #2f4a52; border-color: color-mix(in oklab, #2f4a52 35%, transparent);"><span class="dot"></span> New release</span>
+      </div>
+
+      <h4 style="margin-top: var(--s5);">Stock state — used on cards</h4>
+      <div class="badge-row">
+        <span class="badge solid-sage" style="background: #4a5e4d;">In stock · 200mm</span>
+        <span class="badge" style="background: color-mix(in oklab, #c08a3e 18%, white); color: #6b4f25; border-color: color-mix(in oklab, #c08a3e 35%, transparent);">Low stock — 12 left</span>
+        <span class="badge outline" style="color: #888; border-color: color-mix(in oklab, #888 35%, transparent);">Out of stock</span>
+        <span class="badge driftwood">Available May 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       09 PLANT CARD — workhorse
+  ========================================================= -->
+  <section class="sec" id="card">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">09</span>
+        <h2 class="sec-title">The <em>plant card</em></h2>
+      </div>
+      <div class="sec-kicker">The single hardest-working component — image, name, botanical, specs, badges, stock, price.</div>
+    </div>
+
+    <div class="grid-3">
+
+      <!-- Card 1 -->
+      <article class="plant-card">
+        <div class="img">
+          <div class="ph"></div>
+          <div class="img-badges">
+            <span class="badge solid-sage">Indigenous</span>
+          </div>
+          <button class="save" aria-label="Save"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="body">
+          <h3 class="common">Coast Banksia</h3>
+          <p class="botanical">Banksia integrifolia</p>
+          <div class="badge-row">
+            <span class="badge"><span class="dot"></span> Salt tol.</span>
+            <span class="badge"><span class="dot"></span> Bird attr.</span>
+            <span class="badge"><span class="dot"></span> Wind</span>
+          </div>
+          <div class="specs">
+            <div class="spec"><span class="k">Height</span><span class="v">8–15 m</span></div>
+            <div class="spec"><span class="k">Form</span><span class="v">Tree</span></div>
+            <div class="spec"><span class="k">Sun</span><span class="v">Full</span></div>
+          </div>
+        </div>
+        <div class="foot">
+          <span class="stock"><span class="pip"></span> In stock · 200mm</span>
+          <span class="price">$14.50 <span class="unit">/ 200mm</span></span>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="plant-card">
+        <div class="img">
+          <div class="ph" style="background: radial-gradient(ellipse at 60% 50%, color-mix(in oklab, var(--A-driftwood) 60%, transparent) 0%, transparent 60%), radial-gradient(ellipse at 30% 70%, color-mix(in oklab, var(--sage-700) 50%, transparent) 0%, transparent 60%), var(--A-shell);"></div>
+          <div class="img-badges">
+            <span class="badge driftwood">Contract grown</span>
+          </div>
+          <button class="save" aria-label="Save"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="body">
+          <h3 class="common">Coast Tea-tree</h3>
+          <p class="botanical">Leptospermum laevigatum</p>
+          <div class="badge-row">
+            <span class="badge"><span class="dot"></span> Drought</span>
+            <span class="badge"><span class="dot"></span> Salt tol.</span>
+            <span class="badge"><span class="dot"></span> Hedge</span>
+          </div>
+          <div class="specs">
+            <div class="spec"><span class="k">Height</span><span class="v">3–6 m</span></div>
+            <div class="spec"><span class="k">Form</span><span class="v">Shrub</span></div>
+            <div class="spec"><span class="k">Sun</span><span class="v">Full</span></div>
+          </div>
+        </div>
+        <div class="foot">
+          <span class="stock"><span class="pip" style="background: #c08a3e;"></span> Low stock · 12 left</span>
+          <span class="price">$9.20 <span class="unit">/ 140mm</span></span>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="plant-card">
+        <div class="img">
+          <div class="ph" style="background: radial-gradient(ellipse at 50% 60%, color-mix(in oklab, var(--A-ocean) 50%, transparent) 0%, transparent 60%), radial-gradient(ellipse at 80% 30%, color-mix(in oklab, var(--A-seafoam) 90%, transparent) 0%, transparent 60%), var(--sage-100);"></div>
+          <div class="img-badges">
+            <span class="badge ocean">Provenance</span>
+          </div>
+          <button class="save" aria-label="Save"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="body">
+          <h3 class="common">Knobby Club-rush</h3>
+          <p class="botanical">Ficinia nodosa</p>
+          <div class="badge-row">
+            <span class="badge"><span class="dot"></span> Wet feet</span>
+            <span class="badge"><span class="dot"></span> Erosion</span>
+            <span class="badge"><span class="dot"></span> Coastal</span>
+          </div>
+          <div class="specs">
+            <div class="spec"><span class="k">Height</span><span class="v">0.6–1 m</span></div>
+            <div class="spec"><span class="k">Form</span><span class="v">Sedge</span></div>
+            <div class="spec"><span class="k">Sun</span><span class="v">Full</span></div>
+          </div>
+        </div>
+        <div class="foot">
+          <span class="stock"><span class="pip"></span> In stock · 50mm tube</span>
+          <span class="price">$2.20 <span class="unit">/ tube</span></span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Trade row variant -->
+    <div style="margin-top: var(--s6);">
+      <div class="ts-eyebrow" style="margin-bottom: var(--s3);">Trade availability list — row variant</div>
+
+      <div class="plant-row">
+        <div class="thumb"></div>
+        <div class="nm-block">
+          <div class="common">Coast Banksia</div>
+          <div class="botanical">Banksia integrifolia</div>
+        </div>
+        <div class="cell"><span class="k">Pot</span>200mm</div>
+        <div class="cell"><span class="k">Available</span>2,400</div>
+        <div class="cell"><span class="k">Trade $</span>$11.80</div>
+        <div class="cell"><span class="k">Ready</span>Now</div>
+        <button class="btn btn-secondary" style="padding: 10px 16px; font-size: 13px;">Add to list</button>
+      </div>
+      <div class="plant-row">
+        <div class="thumb" style="background: linear-gradient(135deg, var(--A-shell), var(--A-driftwood));"></div>
+        <div class="nm-block">
+          <div class="common">Coast Tea-tree</div>
+          <div class="botanical">Leptospermum laevigatum</div>
+        </div>
+        <div class="cell"><span class="k">Pot</span>140mm</div>
+        <div class="cell"><span class="k">Available</span>880</div>
+        <div class="cell"><span class="k">Trade $</span>$7.40</div>
+        <div class="cell"><span class="k">Ready</span>Now</div>
+        <button class="btn btn-secondary" style="padding: 10px 16px; font-size: 13px;">Add to list</button>
+      </div>
+      <div class="plant-row">
+        <div class="thumb" style="background: linear-gradient(135deg, var(--A-seafoam), var(--A-ocean));"></div>
+        <div class="nm-block">
+          <div class="common">Knobby Club-rush</div>
+          <div class="botanical">Ficinia nodosa</div>
+        </div>
+        <div class="cell"><span class="k">Pot</span>50mm tube</div>
+        <div class="cell"><span class="k">Available</span>14,200</div>
+        <div class="cell"><span class="k">Trade $</span>$1.65</div>
+        <div class="cell"><span class="k">Ready</span>May 2026</div>
+        <button class="btn btn-secondary" style="padding: 10px 16px; font-size: 13px;">Add to list</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       10 FILTER UI
+  ========================================================= -->
+  <section class="sec" id="filter">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">10</span>
+        <h2 class="sec-title">Filters &amp; <em>facets</em></h2>
+      </div>
+      <div class="sec-kicker">The Plantmark-style structured filter, in our voice.</div>
+    </div>
+
+    <div class="filter-demo">
+      <aside class="filter-rail">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--s4);">
+          <span class="ts-eyebrow">Refine</span>
+          <span class="ts-small" style="font-family: var(--f-italic); font-style: italic; cursor: pointer;">Clear all</span>
+        </div>
+
+        <div class="group">
+          <h5>Category <span class="clear">3</span></h5>
+          <div class="chip-cloud">
+            <button class="chip active">Trees <span class="x">×</span></button>
+            <button class="chip active">Shrubs <span class="x">×</span></button>
+            <button class="chip active">Sedges &amp; grasses <span class="x">×</span></button>
+            <button class="chip">Groundcover</button>
+            <button class="chip">Climbers</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h5>Tolerances</h5>
+          <label class="check-row"><input type="checkbox" checked /><span class="lbl">Drought</span><span class="count">214</span></label>
+          <label class="check-row"><input type="checkbox" checked /><span class="lbl">Salt</span><span class="count">88</span></label>
+          <label class="check-row"><input type="checkbox" /><span class="lbl">Frost</span><span class="count">156</span></label>
+          <label class="check-row"><input type="checkbox" /><span class="lbl">Wet feet</span><span class="count">42</span></label>
+        </div>
+
+        <div class="group">
+          <h5>Mature height</h5>
+          <div class="range">
+            <div class="track">
+              <div class="fill"></div>
+              <div class="knob k1"></div>
+              <div class="knob k2"></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+            <span class="ts-small">1.5 m</span>
+            <span class="ts-small">8 m</span>
+          </div>
+        </div>
+
+        <div class="group">
+          <h5>Pot size</h5>
+          <div class="chip-cloud">
+            <button class="chip">Tube</button>
+            <button class="chip active">140mm</button>
+            <button class="chip active">200mm</button>
+            <button class="chip">300mm</button>
+            <button class="chip">45L bag</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h5>Availability</h5>
+          <label class="check-row"><input type="checkbox" checked /><span class="lbl">In stock now</span></label>
+          <label class="check-row"><input type="checkbox" /><span class="lbl">Available within 8 weeks</span></label>
+          <label class="check-row"><input type="checkbox" /><span class="lbl">Contract grow</span></label>
+        </div>
+      </aside>
+
+      <div>
+        <!-- toolbar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--s4); padding-bottom: var(--s4); border-bottom: 1px dashed color-mix(in oklab, var(--sage-500) 35%, transparent);">
+          <div>
+            <div class="ts-eyebrow">186 plants match</div>
+            <div style="margin-top: 6px;" class="badge-row">
+              <span class="chip active">Trees <span class="x">×</span></span>
+              <span class="chip active">Shrubs <span class="x">×</span></span>
+              <span class="chip active">Drought <span class="x">×</span></span>
+              <span class="chip active">Salt <span class="x">×</span></span>
+              <span class="chip active">200mm <span class="x">×</span></span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <span class="ts-small">Sort</span>
+            <select style="padding: 8px 12px; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--sage-500) 35%, transparent); background: var(--A-paper); font-family: var(--f-display); font-size: 13px;">
+              <option>Most relevant</option>
+              <option>Botanical A–Z</option>
+              <option>Mature height ↑</option>
+              <option>Trade price ↑</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2" style="gap: var(--s4);">
+          <article class="plant-card">
+            <div class="img">
+              <div class="ph"></div>
+              <div class="img-badges"><span class="badge solid-sage">Indigenous</span></div>
+            </div>
+            <div class="body">
+              <h3 class="common">Coast Banksia</h3>
+              <p class="botanical">Banksia integrifolia</p>
+              <div class="specs">
+                <div class="spec"><span class="k">Height</span><span class="v">8–15 m</span></div>
+                <div class="spec"><span class="k">Form</span><span class="v">Tree</span></div>
+                <div class="spec"><span class="k">Sun</span><span class="v">Full</span></div>
+              </div>
+            </div>
+            <div class="foot"><span class="stock"><span class="pip"></span> In stock</span><span class="price">$14.50</span></div>
+          </article>
+          <article class="plant-card">
+            <div class="img">
+              <div class="ph" style="background: radial-gradient(ellipse at 60% 50%, color-mix(in oklab, var(--A-driftwood) 60%, transparent) 0%, transparent 60%), radial-gradient(ellipse at 30% 70%, color-mix(in oklab, var(--sage-700) 50%, transparent) 0%, transparent 60%), var(--A-shell);"></div>
+              <div class="img-badges"><span class="badge driftwood">Contract</span></div>
+            </div>
+            <div class="body">
+              <h3 class="common">Coast Tea-tree</h3>
+              <p class="botanical">Leptospermum laevigatum</p>
+              <div class="specs">
+                <div class="spec"><span class="k">Height</span><span class="v">3–6 m</span></div>
+                <div class="spec"><span class="k">Form</span><span class="v">Shrub</span></div>
+                <div class="spec"><span class="k">Sun</span><span class="v">Full</span></div>
+              </div>
+            </div>
+            <div class="foot"><span class="stock"><span class="pip" style="background: #c08a3e;"></span> Low stock</span><span class="price">$9.20</span></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       11 NAV / HEADER
+  ========================================================= -->
+  <section class="sec" id="nav">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">11</span>
+        <h2 class="sec-title">Navigation &amp; <em>header</em></h2>
+      </div>
+      <div class="sec-kicker">Trade utility strip on top, brand + main nav below. Always sage primary CTAs.</div>
+    </div>
+
+    <nav class="nav">
+      <div class="util">
+        <span>Marshall yard · Mon–Fri 7–4 · Sat 8–12</span>
+        <span class="ic">
+          <a>03 5672 0000</a>
+          <a>orders@coastalnative.com.au</a>
+          <a>Trade login →</a>
+        </span>
+      </div>
+      <div class="main">
+        <div class="brand">
+          <img src="assets/logo-cns-full.png" alt="" />
+          <div class="wm">COASTAL NATIVE SUPPLY <span class="sub">since 2019 · Marshall, Vic</span></div>
+        </div>
+        <ul>
+          <li><a class="active">Plants</a></li>
+          <li><a>Trade</a></li>
+          <li><a>Projects</a></li>
+          <li><a>The yard</a></li>
+          <li><a>About</a></li>
+          <li><a>Journal</a></li>
+        </ul>
+        <div class="cta">
+          <button class="btn btn-icon btn-secondary" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+          <button class="btn btn-primary" style="padding: 10px 18px; font-size: 13px;">Get availability</button>
+        </div>
+      </div>
+    </nav>
+  </section>
+
+  <!-- =========================================================
+       12 SECTION HEADERS
+  ========================================================= -->
+  <section class="sec" id="section">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">12</span>
+        <h2 class="sec-title">Section <em>headers</em></h2>
+      </div>
+      <div class="sec-kicker">Three temperatures: paper, sage-tinted, deep ocean.</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="sh">
+        <div class="sh-eyebrow"><span class="line"></span> Trade</div>
+        <h3 class="sh-title">Availability lists, <em>updated weekly</em></h3>
+        <p class="sh-lede">Download the current list as PDF or CSV. Trade pricing visible after sign-in.</p>
+      </div>
+
+      <div class="sh sage">
+        <div class="sh-eyebrow"><span class="line"></span> Our nursery</div>
+        <h3 class="sh-title">Grown the <em>slow</em> way</h3>
+        <p class="sh-lede">Provenance-collected seed, locally propagated. Tubestock through advanced.</p>
+      </div>
+
+      <div class="sh cream">
+        <div class="sh-eyebrow"><span class="line"></span> Visit</div>
+        <h3 class="sh-title">Open Saturdays <em>at the yard</em></h3>
+        <p class="sh-lede">Coffee on at 8. Bring your site plan — we'll walk through it with you.</p>
+      </div>
+
+      <div class="sh ocean">
+        <div class="sh-eyebrow"><span class="line"></span> Coastal projects</div>
+        <h3 class="sh-title">Built to <em>weather</em> the wind</h3>
+        <p class="sh-lede">Salt spray, sandy soil, exposed aspect. Plants chosen and grown for the conditions they'll meet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       13 FOOTER
+  ========================================================= -->
+  <section class="sec" id="footer">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">13</span>
+        <h2 class="sec-title">Footer</h2>
+      </div>
+      <div class="sec-kicker">Anchor with the deep ocean tone. Cream type. Sage hairlines.</div>
+    </div>
+
+    <footer class="footer">
+      <div class="col brand-col">
+        <h5>Coastal Native <em>Supply</em></h5>
+        <p>Indigenous and locally adapted plants, grown on the Bellarine for revegetation, landscape, and home gardens across the Surf Coast.</p>
+        <div class="badge-row">
+          <span class="badge cream">In stock — yard open Saturday</span>
+        </div>
+      </div>
+      <div class="col">
+        <h6>Plants</h6>
+        <a>All plants</a>
+        <a>Trees</a>
+        <a>Shrubs</a>
+        <a>Sedges &amp; grasses</a>
+        <a>Groundcovers</a>
+        <a>Tubestock</a>
+      </div>
+      <div class="col">
+        <h6>Trade</h6>
+        <a>Availability list</a>
+        <a>Contract growing</a>
+        <a>Projects we've supplied</a>
+        <a>Trade login</a>
+      </div>
+      <div class="col">
+        <h6>The yard</h6>
+        <a>Visit us</a>
+        <a>Hours &amp; directions</a>
+        <a>Journal</a>
+        <a>Instagram</a>
+        <a>Contact</a>
+      </div>
+      <div class="legal">
+        <span>© 2026 Coastal Native Supply Pty Ltd · ABN 00 000 000 000</span>
+        <span>Marshall · Bellarine Peninsula · Wadawurrung Country</span>
+      </div>
+    </footer>
+  </section>
+
+  <!-- =========================================================
+       14 VOICE
+  ========================================================= -->
+  <section class="sec" id="voice">
+    <div class="sec-head">
+      <div style="display: flex; gap: 18px; align-items: baseline;">
+        <span class="sec-num">14</span>
+        <h2 class="sec-title">Voice — <em>knowledgeable, grounded</em></h2>
+      </div>
+      <div class="sec-kicker">Expert, not stiff. Plain English over jargon, but trade terms when trade is reading.</div>
+    </div>
+
+    <div class="voice-grid">
+      <div class="voice-card">
+        <h5>Hero copy</h5>
+        <label>Yes</label>
+        <p class="yes">"Native plants, grown on the coast they belong on."</p>
+        <label>Not this</label>
+        <p class="no">"Premium, sustainably-curated horticultural solutions for the discerning landscape."</p>
+      </div>
+      <div class="voice-card">
+        <h5>Plant page</h5>
+        <label>Yes</label>
+        <p class="yes">"Tough as nails on the foredune. Handles salt spray, sand, and a beating wind. Slow grower — but worth it."</p>
+        <label>Not this</label>
+        <p class="no">"This versatile specimen offers excellent tolerance to a wide range of challenging conditions."</p>
+      </div>
+      <div class="voice-card">
+        <h5>Trade prompt</h5>
+        <label>Yes</label>
+        <p class="yes">"Need 4,000 tubestock for a May plant date? Call the yard — we'll grow them for you."</p>
+        <label>Not this</label>
+        <p class="no">"Please contact our sales team to discuss your bulk procurement requirements."</p>
+      </div>
+    </div>
+
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <p class="ts-quote" style="text-align: center; max-width: 30ch; margin: 0 auto;">"We don't sell plants. We grow them, then help you put them in the right place."</p>
+  </section>
+
+  </main>
+  </div><!-- /with-toc -->
+
+  <!-- Closing strip -->
+  <div style="text-align: center; padding: var(--s9) 0 0;">
+    <div class="ts-eyebrow">End · v 0.1 · April 2026</div>
+    <p class="ts-quote" style="margin-top: var(--s4);">Pick a direction. We'll harden it next.</p>
+  </div>
+
+</div><!-- /page-shell -->
+
+</body>
+</html>

@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Coastal Native Supply — Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --sage-900:#4a5e4d;--sage-700:#6f8470;--sage-500:#8ea08a;
+  --sage-300:#b9c4b1;--sage-100:#dee3d6;--sage-50:#eef0e7;
+  --cream:#f4ede0;--cream-2:#ece3d2;--paper:#fbf7ee;
+  --driftwood:#b9a489;--seafoam:#c8d6cd;--ocean:#2f4a52;
+  --shell:#e6d8c4;--ink:#2a2e26;
+  --ochre:#c08a3e;--banksia:#a85a2c;
+  --r-sm:10px;--r-md:16px;--r-lg:22px;--r-xl:32px;--r-pill:999px;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:96px;
+  --f-display:"Outfit",system-ui,sans-serif;
+  --f-body:"DM Sans",system-ui,sans-serif;
+  --f-serif:"Fraunces",Georgia,serif;
+  --f-italic:"Cormorant Garamond",Georgia,serif;
+  --shadow-sm:0 1px 3px rgba(40,50,35,.06),0 2px 6px rgba(40,50,35,.04);
+  --shadow-md:0 4px 16px rgba(40,50,35,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:var(--f-body)}
+
+/* ====== ANNOUNCEMENT BAR ====== */
+.anno{background:var(--ocean);color:var(--cream);overflow:hidden}
+.anno__inner{display:flex;align-items:center;gap:var(--s5);padding:9px var(--s6);max-width:1380px;margin:0 auto}
+.anno__tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:color-mix(in oklab,var(--cream) 12%,transparent);border:1px solid color-mix(in oklab,var(--cream) 22%,transparent);padding:4px 10px;border-radius:var(--r-pill);flex-shrink:0}
+.anno__pip{width:6px;height:6px;border-radius:50%;background:var(--banksia);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 color-mix(in oklab,var(--banksia) 60%,transparent)}50%{box-shadow:0 0 0 5px transparent}}
+.anno__ticker{flex:1;overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,transparent,black 4%,black 96%,transparent)}
+.anno__track{display:inline-flex;gap:48px;animation:ticker 40s linear infinite;padding-left:100%}
+.anno__track span{font-family:var(--f-serif);font-size:14px}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+.anno__util{display:flex;gap:18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;flex-shrink:0}
+.anno__util a{color:var(--cream);opacity:.85}
+.anno__util a:hover{opacity:1}
+
+/* ====== NAV + MEGA-MENU ====== */
+.nav-wrap{background:var(--paper);border-bottom:1px solid color-mix(in oklab,var(--sage-500) 25%,transparent);position:sticky;top:0;z-index:100}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;padding:var(--s3) var(--s6);max-width:1380px;margin:0 auto;gap:var(--s5)}
+.nav__brand{display:flex;align-items:center;gap:14px}
+.nav__brand img{width:56px;height:56px;object-fit:contain}
+.nav__brand .wm{font-family:var(--f-display);font-weight:400;font-size:17px;letter-spacing:.05em;color:var(--sage-900);line-height:1}
+.nav__brand .wm .sub{display:block;font-family:var(--f-italic);font-style:italic;font-size:11px;color:var(--sage-700);margin-top:3px;letter-spacing:0}
+.nav__links{display:flex;gap:0;list-style:none;margin:0;padding:0}
+.nav__links > li{position:relative}
+.nav__links > li > a{display:block;font-family:var(--f-display);font-weight:500;font-size:14px;color:var(--sage-900);padding:10px var(--s4);border-bottom:2px solid transparent;white-space:nowrap}
+.nav__links > li > a:hover,.nav__links > li > a.active{border-bottom-color:var(--sage-700);color:var(--sage-900)}
+.nav__links > li:hover .mega{opacity:1;pointer-events:all;transform:translateY(0)}
+.nav__cta{display:flex;gap:10px;align-items:center}
+.icon-btn{width:40px;height:40px;border-radius:50%;background:transparent;border:1px solid color-mix(in oklab,var(--sage-500) 35%,transparent);color:var(--sage-900);display:grid;place-items:center}
+.icon-btn:hover{background:var(--sage-50)}
+
+/* MEGA-MENU */
+.mega{
+  position:fixed;left:0;right:0;
+  top:calc(100%);
+  background:var(--paper);
+  border-top:2px solid var(--sage-700);
+  border-bottom:1px solid color-mix(in oklab,var(--sage-500) 25%,transparent);
+  box-shadow:var(--shadow-md);
+  padding:var(--s6) 0;
+  opacity:0;pointer-events:none;
+  transform:translateY(-8px);
+  transition:opacity .2s,transform .2s;
+  z-index:50;
+}
+.mega__inner{max-width:1380px;margin:0 auto;padding:0 var(--s6);display:grid;grid-template-columns:1fr auto;gap:var(--s7);align-items:start}
+.mega__cats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4)}
+.mega__cat{display:flex;align-items:center;gap:var(--s4);padding:var(--s4);border-radius:var(--r-md);background:var(--cream);border:1px solid color-mix(in oklab,var(--sage-500) 22%,transparent);transition:background .15s,border-color .15s}
+.mega__cat:hover{background:var(--sage-50);border-color:var(--sage-700)}
+.mega__cat .thumb{width:64px;height:64px;border-radius:var(--r-sm);overflow:hidden;position:relative;flex-shrink:0}
+.mega__cat .thumb .ph{position:absolute;inset:0}
+.mega__cat .info{}
+.mega__cat .name{font-family:var(--f-display);font-weight:500;font-size:15px;color:var(--sage-900);margin:0 0 3px}
+.mega__cat .count{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-700)}
+.mega__cat .arr{margin-left:auto;color:var(--sage-700);flex-shrink:0;opacity:0;transition:opacity .15s,transform .15s}
+.mega__cat:hover .arr{opacity:1;transform:translateX(3px)}
+.mega__feature{width:260px;background:var(--sage-900);border-radius:var(--r-lg);padding:var(--s5);color:var(--cream);position:relative;overflow:hidden}
+.mega__feature::before{content:"";position:absolute;top:-60px;right:-60px;width:200px;height:200px;border:1px dashed color-mix(in oklab,var(--cream) 25%,transparent);border-radius:50%}
+.mega__feature .tag{font-family:var(--f-display);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:color-mix(in oklab,var(--cream) 75%,transparent);margin-bottom:var(--s3)}
+.mega__feature h4{font-family:var(--f-display);font-weight:400;font-size:22px;line-height:1.1;margin:0 0 var(--s2);position:relative}
+.mega__feature h4 em{font-family:var(--f-italic);font-style:italic;font-weight:400;color:var(--seafoam)}
+.mega__feature p{font-family:var(--f-serif);font-size:14px;line-height:1.5;margin:0 0 var(--s5);opacity:.9;position:relative}
+.mega__feature a{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);position:relative}
+.mega__footer{max-width:1380px;margin:var(--s5) auto 0;padding:var(--s4) var(--s6) 0;border-top:1px dashed color-mix(in oklab,var(--sage-500) 30%,transparent);display:flex;justify-content:space-between;align-items:center}
+.mega__footer a{font-family:var(--f-display);font-weight:500;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-700)}
+.mega__footer a:hover{color:var(--sage-900)}
+
+/* ph backgrounds */
+.ph-trees{background:linear-gradient(135deg,#4a6663 0%,#2f4a52 100%)}
+.ph-shrubs{background:linear-gradient(135deg,#6f8470 0%,#4a5e4d 100%)}
+.ph-grasses{background:linear-gradient(135deg,#c08a3e 0%,#8a5d24 100%)}
+.ph-tube{background:linear-gradient(135deg,#b9a489 0%,#7a6347 100%)}
+.ph-ground{background:linear-gradient(135deg,#c8d6cd 0%,#6f8470 100%)}
+.ph-climb{background:linear-gradient(135deg,#5e7560 0%,#2e3a2a 100%)}
+.ph-green{background:radial-gradient(ellipse at 40% 40%,color-mix(in oklab,var(--sage-700) 55%,transparent),transparent 60%),radial-gradient(ellipse at 70% 70%,color-mix(in oklab,var(--sage-500) 70%,transparent),transparent 55%),var(--sage-100)}
+.ph-sand{background:radial-gradient(ellipse at 55% 35%,color-mix(in oklab,var(--driftwood) 60%,transparent),transparent 55%),var(--shell)}
+.ph-hero1{background:radial-gradient(ellipse at 70% 30%,color-mix(in oklab,var(--seafoam) 35%,transparent),transparent 55%),linear-gradient(180deg,#4a6663,#2f4a52 40%,#233b42)}
+.ph-hero2{background:radial-gradient(ellipse at 40% 60%,color-mix(in oklab,var(--sage-900) 50%,transparent),transparent 55%),linear-gradient(160deg,#3d5a3f,#2e3a2a)}
+.ph-hero3{background:radial-gradient(ellipse at 60% 40%,color-mix(in oklab,var(--ocean) 60%,transparent),transparent 55%),linear-gradient(140deg,#2f4a52,#1d3036 60%,#233b42)}
+
+/* ====== BUTTONS ====== */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:500;font-size:14px;letter-spacing:.04em;padding:14px 22px;border-radius:var(--r-pill);border:1px solid transparent;cursor:pointer;transition:transform .15s,background .2s,color .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{width:14px;height:14px}
+.btn-primary{background:var(--sage-700);color:var(--cream)}
+.btn-primary:hover{background:var(--sage-900)}
+.btn-secondary{background:transparent;color:var(--sage-900);border-color:var(--sage-700)}
+.btn-secondary:hover{background:var(--sage-50)}
+.btn-cream{background:var(--cream);color:var(--sage-900);border:1px solid color-mix(in oklab,var(--sage-700) 28%,transparent)}
+.btn-ghost-cream{background:transparent;color:var(--cream);border-color:color-mix(in oklab,var(--cream) 50%,transparent)}
+.btn-ghost-cream:hover{background:color-mix(in oklab,var(--cream) 12%,transparent)}
+.btn-sm{padding:10px 16px;font-size:13px}
+
+/* ====== HERO SLIDER ====== */
+.hero-slider{position:relative;overflow:hidden;color:var(--cream);height:88vh;min-height:600px;max-height:920px;isolation:isolate}
+.slides{display:flex;height:100%;transition:transform .7s cubic-bezier(.4,0,.2,1)}
+.slide{min-width:100%;height:100%;position:relative;display:flex;align-items:flex-end;padding-bottom:var(--s8)}
+.slide__bg{position:absolute;inset:0;z-index:-1}
+.slide__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,color-mix(in oklab,black 10%,transparent) 0%,color-mix(in oklab,black 55%,transparent) 100%)}
+.slide__inner{max-width:1380px;margin:0 auto;padding:0 var(--s6);width:100%;display:grid;grid-template-columns:1.1fr 1fr;gap:var(--s7);align-items:end}
+.slide__eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:color-mix(in oklab,var(--cream) 85%,transparent);margin-bottom:var(--s4)}
+.slide__eyebrow .line{width:28px;height:1px;background:currentColor}
+.slide h2{font-family:var(--f-display);font-weight:300;font-size:clamp(48px,6.5vw,90px);line-height:.98;letter-spacing:-.025em;margin:0 0 var(--s4);color:var(--cream);text-wrap:balance}
+.slide h2 em{font-family:var(--f-italic);font-style:italic;font-weight:400;color:color-mix(in oklab,var(--seafoam) 90%,white)}
+.slide__lede{font-family:var(--f-serif);font-size:19px;line-height:1.55;max-width:50ch;margin:0 0 var(--s6);color:color-mix(in oklab,var(--cream) 92%,transparent)}
+.slide__cta{display:flex;gap:12px;flex-wrap:wrap}
+.slide__meta{background:color-mix(in oklab,var(--cream) 8%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid color-mix(in oklab,var(--cream) 22%,transparent);border-radius:var(--r-lg);padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3)}
+.slide__meta-row{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s4);padding-bottom:var(--s3);border-bottom:1px dashed color-mix(in oklab,var(--cream) 22%,transparent)}
+.slide__meta-row:last-child{border-bottom:0;padding-bottom:0}
+.slide__meta-row .k{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in oklab,var(--cream) 70%,transparent)}
+.slide__meta-row .v{font-family:var(--f-display);font-weight:400;font-size:17px;color:var(--cream);text-align:right}
+.slide__meta-row .v em{font-family:var(--f-italic);font-style:italic;font-size:14px;opacity:.8}
+
+/* slider controls */
+.slider-nav{position:absolute;bottom:var(--s6);left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:var(--s5);z-index:10}
+.slider-dots{display:flex;gap:10px}
+.slider-dot{width:28px;height:3px;border-radius:2px;background:color-mix(in oklab,var(--cream) 40%,transparent);transition:background .3s,width .3s;cursor:pointer}
+.slider-dot.active{background:var(--cream);width:48px}
+.slider-arrow{width:44px;height:44px;border-radius:50%;background:color-mix(in oklab,var(--cream) 10%,transparent);backdrop-filter:blur(8px);border:1px solid color-mix(in oklab,var(--cream) 25%,transparent);color:var(--cream);display:grid;place-items:center;transition:background .2s}
+.slider-arrow:hover{background:color-mix(in oklab,var(--cream) 20%,transparent)}
+.slider-counter{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in oklab,var(--cream) 75%,transparent)}
+
+/* ====== TRUST STRIP ====== */
+.trust{background:var(--cream);padding:var(--s4) 0;border-bottom:1px dashed color-mix(in oklab,var(--sage-500) 35%,transparent)}
+.trust__inner{max-width:1380px;margin:0 auto;padding:0 var(--s6);display:flex;align-items:center;gap:var(--s7);flex-wrap:wrap}
+.trust__lbl{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-700);flex-shrink:0}
+.trust__items{display:flex;gap:var(--s6);flex-wrap:wrap;font-family:var(--f-italic);font-style:italic;font-size:16px;color:var(--sage-900)}
+.trust__items span{display:inline-flex;align-items:center;gap:8px}
+.trust__items .pip{width:4px;height:4px;border-radius:50%;background:var(--sage-500)}
+
+/* ====== SECTIONS ====== */
+.section{padding:var(--s9) 0}
+.section.tight{padding:var(--s8) 0}
+.section.cream{background:var(--cream)}
+.section.sage{background:var(--sage-50)}
+.container{max-width:1380px;margin:0 auto;padding:0 var(--s6)}
+.sec-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-700);margin-bottom:var(--s3)}
+.sec-eyebrow .line{width:28px;height:1px;background:currentColor}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:var(--s5);margin-bottom:var(--s6)}
+.sec-head-copy{}
+.sec-title{font-family:var(--f-display);font-weight:300;font-size:clamp(32px,4.2vw,54px);line-height:1.05;letter-spacing:-.02em;color:var(--sage-900);margin:0}
+.sec-title em{font-family:var(--f-italic);font-style:italic;font-weight:400;color:var(--sage-700)}
+.sec-lede{font-family:var(--f-serif);font-size:18px;line-height:1.55;color:color-mix(in oklab,var(--ink) 80%,transparent);max-width:58ch;margin:var(--s3) 0 0}
+
+/* ====== CATEGORY CARDS ====== */
+.cat-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--s4)}
+.cat-card{position:relative;border-radius:var(--r-lg);overflow:hidden;color:var(--cream);display:flex;flex-direction:column;justify-content:flex-end;padding:var(--s5);isolation:isolate;transition:transform .25s,box-shadow .25s;text-decoration:none}
+.cat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.cat-card .bg{position:absolute;inset:0;z-index:-1}
+.cat-card .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,color-mix(in oklab,var(--ocean) 85%,transparent) 100%)}
+.cat-card--lg{grid-column:span 6;aspect-ratio:4/3}
+.cat-card--md{grid-column:span 3;aspect-ratio:4/5}
+.cat-card .count{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.9;margin-bottom:5px}
+.cat-card .name{font-family:var(--f-display);font-weight:400;font-size:clamp(20px,2.2vw,30px);line-height:1.05;letter-spacing:-.01em;margin:0}
+.cat-card .name em{font-family:var(--f-italic);font-style:italic;font-weight:400}
+.cat-card .arr{position:absolute;top:var(--s4);right:var(--s4);width:36px;height:36px;border-radius:50%;background:color-mix(in oklab,var(--cream) 16%,transparent);backdrop-filter:blur(6px);border:1px solid color-mix(in oklab,var(--cream) 25%,transparent);display:grid;place-items:center;transition:transform .2s}
+.cat-card:hover .arr{transform:rotate(-45deg)}
+
+/* ====== PLANT GRID ====== */
+.plant-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s4)}
+.plant-card{background:var(--paper);border-radius:var(--r-lg);overflow:hidden;border:1px solid color-mix(in oklab,var(--sage-500) 22%,transparent);display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .25s,box-shadow .25s}
+.plant-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.plant-card .img{aspect-ratio:4/3;position:relative;overflow:hidden;background:var(--sage-100)}
+.plant-card .img-badge{position:absolute;top:10px;left:10px;font-family:var(--f-display);font-weight:600;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:var(--r-pill);background:var(--sage-700);color:var(--cream)}
+.plant-card .body{padding:var(--s4) var(--s5);display:flex;flex-direction:column;gap:4px;flex:1}
+.plant-card .common{font-family:var(--f-display);font-weight:500;font-size:16px;color:var(--sage-900);margin:0}
+.plant-card .botanical{font-family:var(--f-italic);font-style:italic;font-size:13px;color:var(--sage-700);margin:0}
+.plant-card .foot{display:flex;justify-content:space-between;align-items:baseline;padding:var(--s3) var(--s5);border-top:1px dashed color-mix(in oklab,var(--sage-500) 30%,transparent);background:color-mix(in oklab,var(--cream) 50%,transparent)}
+.plant-card .stock{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-700);display:flex;align-items:center;gap:5px}
+.plant-card .stock .pip{width:6px;height:6px;border-radius:50%;background:var(--sage-700)}
+.plant-card .price{font-family:var(--f-display);font-weight:500;font-size:15px;color:var(--sage-900)}
+
+/* ====== TRADE BAND ====== */
+.trade-band{background:var(--cream);border-radius:var(--r-xl);overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr;margin:0 var(--s6)}
+.trade-band__copy{padding:var(--s8) var(--s7)}
+.trade-band__copy h2{font-family:var(--f-display);font-weight:300;font-size:clamp(32px,3.8vw,48px);line-height:1.05;letter-spacing:-.02em;color:var(--sage-900);margin:0 0 var(--s4)}
+.trade-band__copy h2 em{font-family:var(--f-italic);font-style:italic;font-weight:400;color:var(--sage-700)}
+.trade-band__copy p{font-family:var(--f-serif);font-size:17px;line-height:1.55;margin:0 0 var(--s5);max-width:46ch}
+.trade-list{list-style:none;margin:0 0 var(--s6);padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+.trade-list li{font-family:var(--f-display);font-weight:500;font-size:14px;color:var(--sage-900);display:flex;align-items:center;gap:10px;padding:5px 0}
+.trade-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--sage-700);flex-shrink:0}
+.trade-band__visual{background:linear-gradient(135deg,var(--sage-700),var(--sage-900));position:relative;overflow:hidden;color:var(--cream);padding:var(--s7);display:flex;flex-direction:column;justify-content:space-between}
+.trade-band__visual::before{content:"";position:absolute;top:-80px;right:-80px;width:280px;height:280px;border:1px dashed color-mix(in oklab,var(--cream) 25%,transparent);border-radius:50%}
+.trade-band__visual::after{content:"";position:absolute;bottom:-120px;left:-120px;width:340px;height:340px;border:1px dashed color-mix(in oklab,var(--cream) 18%,transparent);border-radius:50%}
+.trade-quote{font-family:var(--f-italic);font-style:italic;font-size:26px;line-height:1.35;margin:0;text-wrap:balance;position:relative;z-index:1}
+.trade-attr{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in oklab,var(--cream) 75%,transparent);position:relative;z-index:1}
+.trade-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);position:relative;z-index:1;padding-top:var(--s5);border-top:1px dashed color-mix(in oklab,var(--cream) 22%,transparent)}
+.trade-stats .k{font-family:var(--f-display);font-weight:500;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:color-mix(in oklab,var(--cream) 70%,transparent);margin-bottom:4px}
+.trade-stats .v{font-family:var(--f-display);font-weight:300;font-size:26px;color:var(--cream);line-height:1}
+.trade-stats .v em{font-family:var(--f-italic);font-style:italic;font-size:14px;opacity:.75;margin-left:2px}
+
+/* ====== INSTAGRAM FEED ====== */
+.ig-head{display:flex;justify-content:space-between;align-items:end;gap:var(--s5);margin-bottom:var(--s5)}
+.ig-handle{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:500;font-size:14px;color:var(--sage-700)}
+.ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s3)}
+.ig-tile{position:relative;aspect-ratio:1/1;border-radius:var(--r-md);overflow:hidden;cursor:pointer}
+.ig-tile .ph{position:absolute;inset:0}
+.ig-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.5) 100%);opacity:0;transition:opacity .2s}
+.ig-tile:hover::after{opacity:1}
+.ig-tile__type{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.4);color:var(--cream);display:grid;place-items:center;backdrop-filter:blur(4px)}
+.ig-tile__cap{position:absolute;bottom:8px;left:10px;right:10px;font-family:var(--f-display);font-weight:500;font-size:11px;color:var(--cream);line-height:1.3;opacity:0;transition:opacity .2s;z-index:1}
+.ig-tile:hover .ig-tile__cap{opacity:1}
+.ig-tile.large{grid-column:span 2;grid-row:span 2;border-radius:var(--r-lg)}
+.ig-tile.large .ig-tile__cap{font-size:14px}
+.ig-footer{display:flex;justify-content:space-between;align-items:center;padding-top:var(--s4);border-top:1px dashed color-mix(in oklab,var(--sage-500) 30%,transparent);margin-top:var(--s4)}
+.ig-footer .live{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-700)}
+.ig-footer .live .pip{width:7px;height:7px;border-radius:50%;background:var(--banksia)}
+
+/* IG placeholder colors */
+.ig-pic1{background:linear-gradient(135deg,#c8d6cd,#6f8470 60%,#4a5e4d)}
+.ig-pic2{background:linear-gradient(135deg,#b9a489,#c08a3e 60%,#6b4f3a)}
+.ig-pic3{background:linear-gradient(135deg,#a85a2c,#6b4f3a)}
+.ig-pic4{background:linear-gradient(135deg,#2f4a52,#233b42)}
+.ig-pic5{background:linear-gradient(135deg,#8ea08a,#4a5e4d)}
+.ig-pic6{background:linear-gradient(135deg,#c8d6cd 0%,#2f4a52 100%)}
+.ig-pic7{background:linear-gradient(135deg,#dee3d6,#6f8470)}
+
+/* ====== LOCATION SECTION ====== */
+.location{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--paper);border-radius:var(--r-xl);overflow:hidden;border:1px solid color-mix(in oklab,var(--sage-500) 22%,transparent)}
+.map-col{position:relative;min-height:520px;overflow:hidden;background:var(--sage-50)}
+.map-placeholder{position:absolute;inset:0;background:
+  linear-gradient(180deg,color-mix(in oklab,var(--seafoam) 30%,var(--paper)) 0%,var(--paper) 100%)}
+/* Roads / paths in the map placeholder */
+.map-placeholder svg{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.map-pin{position:absolute;top:42%;left:48%;transform:translate(-50%,-100%);z-index:5;display:flex;flex-direction:column;align-items:center}
+.map-pin__dot{width:20px;height:20px;border-radius:50%;background:var(--banksia);border:3px solid var(--cream);box-shadow:0 2px 8px rgba(168,90,44,.4)}
+.map-pin__label{background:var(--banksia);color:var(--cream);font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:var(--r-pill);margin-bottom:6px;white-space:nowrap;box-shadow:var(--shadow-sm)}
+.map-overlay{position:absolute;bottom:var(--s5);left:var(--s5);right:var(--s5);background:rgba(251,247,238,.94);backdrop-filter:blur(10px);border-radius:var(--r-lg);padding:var(--s4) var(--s5);border:1px solid color-mix(in oklab,var(--sage-500) 25%,transparent)}
+.map-overlay .addr{font-family:var(--f-display);font-weight:500;font-size:15px;color:var(--sage-900)}
+.map-overlay .addr small{display:block;font-family:var(--f-body);font-weight:400;font-size:13px;color:var(--sage-700);margin-top:3px}
+.map-overlay .dir-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ocean);margin-top:var(--s3)}
+.map-overlay .dir-btn:hover{color:var(--sage-900)}
+
+.location-info{padding:var(--s7)}
+.location-info .sec-eyebrow{margin-bottom:var(--s3)}
+.location-info h2{font-family:var(--f-display);font-weight:300;font-size:clamp(30px,3.2vw,42px);line-height:1.05;letter-spacing:-.02em;color:var(--sage-900);margin:0 0 var(--s3)}
+.location-info h2 em{font-family:var(--f-italic);font-style:italic;font-weight:400;color:var(--sage-700)}
+.location-info p.intro{font-family:var(--f-serif);font-size:17px;line-height:1.55;margin:0 0 var(--s6);max-width:44ch}
+
+.hours-table{width:100%;border-collapse:collapse;margin-bottom:var(--s5)}
+.hours-table tr{border-bottom:1px dashed color-mix(in oklab,var(--sage-500) 28%,transparent)}
+.hours-table tr:last-child{border-bottom:0}
+.hours-table td{padding:var(--s3) 0;font-family:var(--f-display);font-weight:500;font-size:14px;color:var(--sage-900)}
+.hours-table td:first-child{color:var(--sage-700);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;width:40%}
+.hours-table td.today{color:var(--sage-900);font-weight:600}
+.hours-table .badge-closed{font-family:var(--f-display);font-weight:500;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:color-mix(in oklab,var(--ink) 55%,transparent)}
+
+.visit-cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-top:var(--s5)}
+.visit-card{border-radius:var(--r-md);padding:var(--s4) var(--s5);border:1px solid color-mix(in oklab,var(--sage-500) 25%,transparent)}
+.visit-card--public{background:var(--sage-50)}
+.visit-card--trade{background:var(--cream)}
+.visit-card .icon{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;margin-bottom:var(--s3)}
+.visit-card--public .icon{background:var(--sage-700);color:var(--cream)}
+.visit-card--trade .icon{background:var(--cream-2);color:var(--sage-700);border:1px solid color-mix(in oklab,var(--sage-700) 30%,transparent)}
+.visit-card h5{font-family:var(--f-display);font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-900);margin:0 0 var(--s2)}
+.visit-card p{font-family:var(--f-serif);font-size:14px;line-height:1.5;margin:0;color:color-mix(in oklab,var(--ink) 80%,transparent)}
+
+/* ====== NEWSLETTER ====== */
+.newsletter{max-width:1100px;margin:0 auto;background:var(--cream);border-radius:var(--r-xl);padding:var(--s8) var(--s7);border:1px solid color-mix(in oklab,var(--sage-500) 22%,transparent);display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);align-items:center;position:relative;overflow:hidden}
+.newsletter::before,.newsletter::after{content:"";position:absolute;border:1px dashed color-mix(in oklab,var(--sage-500) 45%,transparent);border-radius:50%;pointer-events:none}
+.newsletter::before{width:260px;height:260px;bottom:-150px;right:-80px}
+.newsletter::after{width:360px;height:360px;bottom:-220px;right:-150px;opacity:.55}
+.newsletter__copy h2{font-family:var(--f-display);font-weight:300;font-size:clamp(28px,3.4vw,42px);line-height:1.05;letter-spacing:-.02em;color:var(--sage-900);margin:0 0 var(--s3)}
+.newsletter__copy h2 em{font-family:var(--f-italic);font-style:italic;font-weight:400;color:var(--sage-700)}
+.newsletter__copy p{font-family:var(--f-serif);font-size:16px;line-height:1.55;margin:0 0 var(--s4);max-width:40ch;color:color-mix(in oklab,var(--ink) 80%,transparent)}
+.newsletter__benefits{display:flex;gap:16px;flex-wrap:wrap}
+.newsletter__benefits span{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-700)}
+.newsletter__benefits .pip{width:4px;height:4px;border-radius:50%;background:var(--sage-500)}
+.newsletter__form{background:var(--paper);border-radius:var(--r-lg);padding:var(--s5);border:1px solid color-mix(in oklab,var(--sage-500) 22%,transparent);position:relative;z-index:1}
+.newsletter__role{display:flex;gap:6px;margin-bottom:var(--s4)}
+.newsletter__role input{display:none}
+.newsletter__role label{flex:1;text-align:center;padding:9px 10px;border:1px solid color-mix(in oklab,var(--sage-500) 35%,transparent);border-radius:var(--r-pill);font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-900);cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.newsletter__role input:checked+label,.newsletter__role label:hover{background:var(--sage-700);color:var(--cream);border-color:var(--sage-700)}
+.newsletter__field-lbl{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-700);margin-bottom:8px;display:block}
+.newsletter__row{display:flex;gap:6px;background:var(--paper);border:1px solid color-mix(in oklab,var(--sage-500) 35%,transparent);border-radius:var(--r-pill);padding:5px 5px 5px 16px;margin-bottom:var(--s4)}
+.newsletter__row input{flex:1;border:0;background:transparent;outline:none;font-family:var(--f-body);font-size:15px;color:var(--ink);padding:8px 0}
+.newsletter__check{display:flex;gap:10px;font-family:var(--f-body);font-size:13px;line-height:1.5;color:color-mix(in oklab,var(--ink) 70%,transparent)}
+.newsletter__check input{accent-color:var(--sage-700);margin-top:2px}
+
+/* ====== FOOTER ====== */
+.footer{background:var(--ocean);color:var(--cream);padding:var(--s8) 0 var(--s5)}
+.footer__inner{max-width:1380px;margin:0 auto;padding:0 var(--s6);display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:var(--s7)}
+.footer h5{font-family:var(--f-display);font-weight:300;font-size:26px;line-height:1.05;margin:0 0 var(--s3)}
+.footer h5 em{font-family:var(--f-italic);font-style:italic;font-weight:400}
+.footer>div>p{font-family:var(--f-serif);font-size:14px;line-height:1.55;margin:0 0 var(--s4);opacity:.85;max-width:30ch}
+.footer h6{font-family:var(--f-display);font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:color-mix(in oklab,var(--cream) 72%,transparent);margin:0 0 var(--s4)}
+.footer .col a{display:block;padding:4px 0;font-size:14px;color:var(--cream);opacity:.85}
+.footer .col a:hover{opacity:1}
+.footer__legal{max-width:1380px;margin:var(--s6) auto 0;padding:var(--s4) var(--s6) 0;border-top:1px dashed color-mix(in oklab,var(--cream) 22%,transparent);display:flex;justify-content:space-between;font-size:12px;opacity:.7}
+.ic-row{display:flex;gap:10px;margin-top:var(--s4)}
+.ic-row a{width:36px;height:36px;border-radius:50%;border:1px solid color-mix(in oklab,var(--cream) 28%,transparent);display:grid;place-items:center;color:var(--cream)}
+.ic-row a:hover{background:color-mix(in oklab,var(--cream) 12%,transparent)}
+
+@media(max-width:1080px){
+  .slide__inner,.trade-band,.location,.newsletter{grid-template-columns:1fr!important}
+  .plant-grid{grid-template-columns:repeat(2,1fr)}
+  .ig-grid{grid-template-columns:repeat(3,1fr)}
+  .mega__inner{grid-template-columns:1fr}
+  .mega__feature{display:none}
+  .footer__inner{grid-template-columns:1fr 1fr}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .cat-card--lg,.cat-card--md{grid-column:span 2}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="anno">
+  <div class="anno__inner">
+    <span class="anno__tag"><span class="anno__pip"></span>Live</span>
+    <div class="anno__ticker">
+      <div class="anno__track">
+        <span>Yard open this Saturday 8–12 · Marshall.</span>
+        <span style="color:color-mix(in oklab,var(--cream) 45%,transparent)">◆</span>
+        <span>Autumn cut-off: Banksia integrifolia 200mm — <strong>2 May</strong>.</span>
+        <span style="color:color-mix(in oklab,var(--cream) 45%,transparent)">◆</span>
+        <span>Trade availability updated weekly — sign in for pricing.</span>
+        <span style="color:color-mix(in oklab,var(--cream) 45%,transparent)">◆</span>
+        <span>New: indigenous Bellarine provenance list — filter by suburb &amp; soil.</span>
+        <span style="color:color-mix(in oklab,var(--cream) 45%,transparent)">◆</span>
+        <span>Yard open this Saturday 8–12 · Marshall.</span>
+        <span style="color:color-mix(in oklab,var(--cream) 45%,transparent)">◆</span>
+      </div>
+    </div>
+    <div class="anno__util">
+      <a>03 5222 0000</a>
+      <span style="opacity:.35">·</span>
+      <a>Trade login →</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV + MEGA-MENU -->
+<div class="nav-wrap">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#">
+      <img src="assets/logo-cns-full.png" alt=""/>
+      <div class="wm">COASTAL NATIVE SUPPLY <span class="sub">Marshall · Bellarine Peninsula</span></div>
+    </a>
+    <ul class="nav__links">
+      <li>
+        <a class="active" href="#">Plants ▾</a>
+        <!-- MEGA-MENU -->
+        <div class="mega">
+          <div class="mega__inner">
+            <div>
+              <div class="sec-eyebrow" style="margin-bottom:var(--s5)"><span class="line"></span> Browse by category</div>
+              <div class="mega__cats">
+                <a class="mega__cat" href="#">
+                  <div class="mega__cat thumb"><div class="ph ph-trees"></div></div>
+                  <div class="mega__cat info"><div class="name">Trees &amp; canopy</div><div class="count">128 species</div></div>
+                  <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a class="mega__cat" href="#">
+                  <div class="mega__cat thumb"><div class="ph ph-shrubs"></div></div>
+                  <div class="mega__cat info"><div class="name">Shrubs</div><div class="count">94 species</div></div>
+                  <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a class="mega__cat" href="#">
+                  <div class="mega__cat thumb"><div class="ph ph-grasses"></div></div>
+                  <div class="mega__cat info"><div class="name">Grasses &amp; sedges</div><div class="count">62 species</div></div>
+                  <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a class="mega__cat" href="#">
+                  <div class="mega__cat thumb"><div class="ph ph-ground"></div></div>
+                  <div class="mega__cat info"><div class="name">Groundcovers</div><div class="count">48 species</div></div>
+                  <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a class="mega__cat" href="#">
+                  <div class="mega__cat thumb"><div class="ph ph-climb"></div></div>
+                  <div class="mega__cat info"><div class="name">Climbers</div><div class="count">22 species</div></div>
+                  <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a class="mega__cat" href="#">
+                  <div class="mega__cat thumb"><div class="ph ph-tube"></div></div>
+                  <div class="mega__cat info"><div class="name">Tubestock</div><div class="count">340+ species</div></div>
+                  <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </div>
+              <div class="mega__footer">
+                <a href="#">View all 410+ species →</a>
+                <a href="#">Availability list (PDF)</a>
+                <a href="#">Filter by Bellarine provenance</a>
+              </div>
+            </div>
+            <div class="mega__feature">
+              <div class="tag">Just lifted this week</div>
+              <h4>Banksia integrifolia<br/><em>200mm — 2,400 ready</em></h4>
+              <p>Salt-tolerant, wind-hardy, fast-establishing. A cornerstone species of the Bellarine coastal heathland.</p>
+              <a href="Plant Page.html">View plant →
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li><a href="#">Trade</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">The yard</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Journal</a></li>
+    </ul>
+    <div class="nav__cta">
+      <button class="icon-btn" aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Cart">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+      </button>
+      <button class="btn btn-primary btn-sm">Check plant stock</button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== HERO SLIDER ====== -->
+<section class="hero-slider" data-screen-label="Hero slider">
+  <div class="slides" id="slides">
+    <!-- Slide 1 -->
+    <div class="slide">
+      <div class="slide__bg ph-hero1" style="position:absolute;inset:0"></div>
+      <div class="slide__inner">
+        <div>
+          <div class="slide__eyebrow"><span class="line"></span> Bellarine &amp; Surf Coast · Wholesale &amp; retail</div>
+          <h2>Native plants, grown <em>on the coast</em> they belong on.</h2>
+          <p class="slide__lede">Provenance-collected, locally propagated stock for landscapers, councils, designers, and home gardeners. Tubestock through advanced.</p>
+          <div class="slide__cta">
+            <a class="btn btn-cream" href="#">Browse availability
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-ghost-cream" href="#">Trade login</a>
+          </div>
+        </div>
+        <div class="slide__meta">
+          <div class="slide__meta-row"><span class="k">Yard</span><span class="v">Marshall, Vic <em>— open Sat 8–12</em></span></div>
+          <div class="slide__meta-row"><span class="k">In ground</span><span class="v">410+ <em>species</em></span></div>
+          <div class="slide__meta-row"><span class="k">Country</span><span class="v">Wadawurrung</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide">
+      <div class="slide__bg ph-hero2" style="position:absolute;inset:0"></div>
+      <div class="slide__inner">
+        <div>
+          <div class="slide__eyebrow"><span class="line"></span> Trade &amp; wholesale</div>
+          <h2>Reliable supply for projects <em>of any scale</em>.</h2>
+          <p class="slide__lede">Landscapers, councils, Landcare groups and developers — we grow for your plant dates. Tubestock to advanced, contract growing available.</p>
+          <div class="slide__cta">
+            <a class="btn btn-cream" href="#">Open a trade account
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-ghost-cream" href="#">View availability list</a>
+          </div>
+        </div>
+        <div class="slide__meta">
+          <div class="slide__meta-row"><span class="k">Stock units</span><span class="v">28,000+</span></div>
+          <div class="slide__meta-row"><span class="k">On contract</span><span class="v">62,000 <em>growing</em></span></div>
+          <div class="slide__meta-row"><span class="k">Lead time</span><span class="v">6–18 <em>months</em></span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide">
+      <div class="slide__bg ph-hero3" style="position:absolute;inset:0"></div>
+      <div class="slide__inner">
+        <div>
+          <div class="slide__eyebrow"><span class="line"></span> Autumn 2026 · Lifting now</div>
+          <h2>New season stock <em>ready</em> to go.</h2>
+          <p class="slide__lede">Banksia integrifolia 200mm now available. Autumn is the best time to establish coastal species — order before 2 May to secure stock.</p>
+          <div class="slide__cta">
+            <a class="btn btn-cream" href="Plant Page.html">Shop Coast Banksia
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-ghost-cream" href="#">Full availability →</a>
+          </div>
+        </div>
+        <div class="slide__meta">
+          <div class="slide__meta-row"><span class="k">Just lifted</span><span class="v">Banksia 200mm</span></div>
+          <div class="slide__meta-row"><span class="k">Order cut-off</span><span class="v">2 May <em>2026</em></span></div>
+          <div class="slide__meta-row"><span class="k">Plant date</span><span class="v">May – June</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Slider controls -->
+  <div class="slider-nav">
+    <button class="slider-arrow" id="prev" aria-label="Previous slide">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="slider-dots" id="dots">
+      <button class="slider-dot active" onclick="goTo(0)" aria-label="Slide 1"></button>
+      <button class="slider-dot" onclick="goTo(1)" aria-label="Slide 2"></button>
+      <button class="slider-dot" onclick="goTo(2)" aria-label="Slide 3"></button>
+    </div>
+    <span class="slider-counter" id="counter">01 / 03</span>
+    <button class="slider-arrow" id="next" aria-label="Next slide">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust">
+  <div class="trust__inner">
+    <span class="trust__lbl">Supplied to</span>
+    <div class="trust__items">
+      <span><span class="pip"></span>City of Greater Geelong</span>
+      <span><span class="pip"></span>Landcare Victoria</span>
+      <span><span class="pip"></span>Surf Coast Shire</span>
+      <span><span class="pip"></span>Bellarine Catchment Network</span>
+      <span><span class="pip"></span>240+ landscape projects</span>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section" data-screen-label="Categories">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-head-copy">
+        <div class="sec-eyebrow"><span class="line"></span> Browse</div>
+        <h2 class="sec-title">Shop by <em>category</em></h2>
+      </div>
+      <a class="btn btn-secondary" href="#">View all 410+ species
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="cat-grid">
+      <a class="cat-card cat-card--lg" href="#">
+        <div class="bg" style="background:linear-gradient(135deg,#4a6663,#2f4a52 60%,#1d3036)"></div>
+        <span class="count">128 species</span><h3 class="name">Trees <em>&amp; canopy</em></h3>
+        <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="cat-card cat-card--md" href="#">
+        <div class="bg" style="background:linear-gradient(135deg,#6f8470,#4a5e4d)"></div>
+        <span class="count">94 species</span><h3 class="name">Shrubs</h3>
+        <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="cat-card cat-card--md" href="#">
+        <div class="bg" style="background:linear-gradient(135deg,#c08a3e,#8a5d24)"></div>
+        <span class="count">62 species</span><h3 class="name">Grasses <em>&amp; sedges</em></h3>
+        <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="cat-card cat-card--md" href="#">
+        <div class="bg" style="background:linear-gradient(135deg,#b9a489,#7a6347)"></div>
+        <span class="count">340+ species</span><h3 class="name">Tubestock</h3>
+        <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="cat-card cat-card--md" href="#">
+        <div class="bg" style="background:linear-gradient(135deg,#c8d6cd,#6f8470)"></div>
+        <span class="count">48 species</span><h3 class="name">Groundcovers</h3>
+        <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="cat-card cat-card--md" href="#">
+        <div class="bg" style="background:linear-gradient(135deg,#5e7560,#2e3a2a)"></div>
+        <span class="count">22 species</span><h3 class="name">Climbers</h3>
+        <span class="arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PLANTS -->
+<section class="section tight" data-screen-label="Featured plants">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-head-copy">
+        <div class="sec-eyebrow"><span class="line"></span> In stock now</div>
+        <h2 class="sec-title">Lifted <em>this week</em></h2>
+      </div>
+      <a class="btn btn-secondary" href="#">Full availability list
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="plant-grid">
+      <a class="plant-card" href="Plant Page.html">
+        <div class="img"><div class="ph-green" style="position:absolute;inset:0"></div><span class="img-badge">Indigenous</span></div>
+        <div class="body"><h3 class="common">Coast Banksia</h3><p class="botanical">Banksia integrifolia</p></div>
+        <div class="foot"><span class="stock"><span class="pip"></span>In stock · 200mm</span><span class="price">$14.50</span></div>
+      </a>
+      <a class="plant-card" href="#">
+        <div class="img"><div class="ph-sand" style="position:absolute;inset:0"></div><span class="img-badge" style="background:var(--driftwood);color:#2a2218">Contract</span></div>
+        <div class="body"><h3 class="common">Coast Tea-tree</h3><p class="botanical">Leptospermum laevigatum</p></div>
+        <div class="foot"><span class="stock"><span class="pip" style="background:var(--ochre)"></span>Low stock</span><span class="price">$9.20</span></div>
+      </a>
+      <a class="plant-card" href="#">
+        <div class="img"><div class="ph-trees" style="position:absolute;inset:0"></div><span class="img-badge" style="background:var(--ocean)">Provenance</span></div>
+        <div class="body"><h3 class="common">Knobby Club-rush</h3><p class="botanical">Ficinia nodosa</p></div>
+        <div class="foot"><span class="stock"><span class="pip"></span>In stock · tube</span><span class="price">$2.20</span></div>
+      </a>
+      <a class="plant-card" href="#">
+        <div class="img"><div class="ph-shrubs" style="position:absolute;inset:0"></div><span class="img-badge">Indigenous</span></div>
+        <div class="body"><h3 class="common">Common Correa</h3><p class="botanical">Correa reflexa</p></div>
+        <div class="foot"><span class="stock"><span class="pip"></span>In stock · 140mm</span><span class="price">$8.40</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TRADE BAND -->
+<section class="section tight" data-screen-label="Trade">
+  <div class="trade-band">
+    <div class="trade-band__copy">
+      <div class="sec-eyebrow"><span class="line"></span> Trade &amp; wholesale</div>
+      <h2>Reliable supply for <em>any size project</em>.</h2>
+      <p>We grow for landscapers, councils, designers and Landcare projects — tubestock through advanced, provenance verified, trade pricing on sign-in.</p>
+      <ul class="trade-list">
+        <li>Landscape contractors</li><li>Council &amp; civic</li>
+        <li>Garden designers</li><li>Landcare projects</li>
+        <li>Builders &amp; developers</li><li>Property maintenance</li>
+      </ul>
+      <a class="btn btn-primary" href="#">Open a trade account
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="trade-band__visual">
+      <p class="trade-quote">"Grown the slow way, on the same stretch of coast they'll be planted on."</p>
+      <div>
+        <p class="trade-attr">— Sam · head grower</p>
+        <div class="trade-stats" style="margin-top:var(--s5)">
+          <div><div class="k">Species</div><div class="v">410<em>+</em></div></div>
+          <div><div class="k">Stock</div><div class="v">28<em>k</em></div></div>
+          <div><div class="k">Contract</div><div class="v">62<em>k</em></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM FEED -->
+<section class="section cream" data-screen-label="Instagram feed">
+  <div class="container">
+    <div class="ig-head">
+      <div>
+        <div class="sec-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+          Instagram · live feed
+        </div>
+        <h2 class="sec-title">From <em>the yard</em></h2>
+      </div>
+      <div class="ig-handle">
+        <span>@coastalnativesupply</span>
+        <a class="btn btn-secondary btn-sm" href="#" target="_blank">Follow</a>
+      </div>
+    </div>
+
+    <div class="ig-grid">
+      <!-- Large feature tile -->
+      <div class="ig-tile large">
+        <div class="ph ig-pic1"></div>
+        <span class="ig-tile__type">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="ig-tile__cap">First lift of the season — Banksia integrifolia 200mm now available.</span>
+      </div>
+      <!-- 4 smaller tiles -->
+      <div class="ig-tile">
+        <div class="ph ig-pic2"></div>
+        <span class="ig-tile__type"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/></svg></span>
+        <span class="ig-tile__cap">Autumn at the yard</span>
+      </div>
+      <div class="ig-tile">
+        <div class="ph ig-pic3"></div>
+        <span class="ig-tile__type"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/></svg></span>
+        <span class="ig-tile__cap">Closed ANZAC Day — back Saturday</span>
+      </div>
+      <div class="ig-tile">
+        <div class="ph ig-pic4"></div>
+        <span class="ig-tile__type"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <span class="ig-tile__cap">Bellarine reveg site visit</span>
+      </div>
+      <div class="ig-tile">
+        <div class="ph ig-pic5"></div>
+        <span class="ig-tile__type"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/></svg></span>
+        <span class="ig-tile__cap">Propagation bench — seedlings from provenance-collected seed</span>
+      </div>
+      <div class="ig-tile">
+        <div class="ph ig-pic6"></div>
+        <span class="ig-tile__type"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4V8z"/></svg></span>
+        <span class="ig-tile__cap">Site tour with @surfcoastlandcare</span>
+      </div>
+    </div>
+
+    <div class="ig-footer">
+      <span class="live"><span class="pip"></span>Live feed — syncs automatically</span>
+      <a class="btn btn-secondary btn-sm" href="#">View all posts</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE WE ARE -->
+<section class="section" data-screen-label="Location">
+  <div class="container">
+    <div class="sec-head" style="margin-bottom:var(--s6)">
+      <div class="sec-head-copy">
+        <div class="sec-eyebrow"><span class="line"></span> Find us</div>
+        <h2 class="sec-title">The yard at <em>Marshall</em></h2>
+      </div>
+    </div>
+    <div class="location">
+      <!-- Map -->
+      <div class="map-col">
+        <div class="map-placeholder">
+          <!-- Stylised map roads -->
+          <svg viewBox="0 0 600 520" preserveAspectRatio="xMidYMid meet">
+            <!-- roads -->
+            <path d="M0,180 L600,180" stroke="#c8d6cd" stroke-width="8" fill="none"/>
+            <path d="M0,300 L600,300" stroke="#c8d6cd" stroke-width="12" fill="none"/>
+            <path d="M200,0 L200,520" stroke="#c8d6cd" stroke-width="6" fill="none"/>
+            <path d="M380,0 L380,520" stroke="#c8d6cd" stroke-width="10" fill="none"/>
+            <path d="M0,420 L600,420" stroke="#c8d6cd" stroke-width="6" fill="none"/>
+            <path d="M90,0 L90,520" stroke="#dee3d6" stroke-width="4" fill="none" opacity=".7"/>
+            <path d="M500,0 L500,520" stroke="#dee3d6" stroke-width="4" fill="none" opacity=".7"/>
+            <path d="M0,80 L600,80" stroke="#dee3d6" stroke-width="3" fill="none" opacity=".5"/>
+            <path d="M0,460 L600,460" stroke="#dee3d6" stroke-width="3" fill="none" opacity=".5"/>
+            <!-- diagonal road -->
+            <path d="M380,300 Q450,380 600,460" stroke="#c8d6cd" stroke-width="8" fill="none"/>
+            <!-- green areas -->
+            <rect x="210" y="190" width="160" height="100" rx="8" fill="#dee3d6" opacity=".6"/>
+            <rect x="60" y="310" width="120" height="100" rx="6" fill="#dee3d6" opacity=".4"/>
+          </svg>
+        </div>
+        <!-- Pin -->
+        <div class="map-pin">
+          <div class="map-pin__label">Coastal Native Supply</div>
+          <div class="map-pin__dot"></div>
+        </div>
+        <!-- Address overlay -->
+        <div class="map-overlay">
+          <div class="addr">25 Wattle Drive, Marshall VIC 3216 <small>Bellarine Peninsula · 20 min south of Geelong</small></div>
+          <a class="dir-btn" href="#" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            Get directions in Google Maps →
+          </a>
+        </div>
+      </div>
+      <!-- Info -->
+      <div class="location-info">
+        <div class="sec-eyebrow"><span class="line"></span> Opening hours</div>
+        <h2>Come and <em>see us</em>.</h2>
+        <p class="intro">We're a working nursery on the Bellarine. The yard is open to the public for collection during set hours — no appointment needed to pick up an online order.</p>
+        <table class="hours-table">
+          <tr><td>Monday – Friday</td><td class="today">7:00 am – 4:00 pm</td></tr>
+          <tr><td>Saturday</td><td class="today">8:00 am – 12:00 pm <strong>· Open today</strong></td></tr>
+          <tr><td>Sunday</td><td><span class="badge-closed">Closed</span></td></tr>
+          <tr><td>Public holidays</td><td><span class="badge-closed">Closed — check Instagram</span></td></tr>
+        </table>
+        <div class="visit-cards">
+          <div class="visit-card visit-card--public">
+            <div class="icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            </div>
+            <h5>Order online, pick up at the yard</h5>
+            <p>Anyone can order online and collect during open hours. No appointment needed — just bring your order confirmation.</p>
+          </div>
+          <div class="visit-card visit-card--trade">
+            <div class="icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h5>Trade accounts &amp; browsing</h5>
+            <p>Trade account holders are warmly welcome to walk the nursery. We ask that you call ahead — it helps us make the most of your visit.</p>
+          </div>
+        </div>
+        <div style="margin-top:var(--s5);display:flex;gap:var(--s3)">
+          <a class="btn btn-primary" href="#">Get directions</a>
+          <a class="btn btn-secondary" href="#">Call the yard</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section sage" data-screen-label="Newsletter">
+  <div class="container">
+    <div class="newsletter">
+      <div class="newsletter__copy">
+        <div class="sec-eyebrow"><span class="line"></span> Stay in the loop</div>
+        <h2>Availability lists, <em>straight to your inbox</em></h2>
+        <p>Weekly trade availability, seasonal stock alerts, and the occasional note from the yard. No spam — unsubscribe any time.</p>
+        <div class="newsletter__benefits">
+          <span><span class="pip"></span>Weekly availability PDF</span>
+          <span><span class="pip"></span>Seasonal stock alerts</span>
+          <span><span class="pip"></span>Yard-day reminders</span>
+        </div>
+      </div>
+      <form class="newsletter__form" onsubmit="event.preventDefault();this.querySelector('.newsletter__row input').value='✓ Subscribed — check your inbox'">
+        <label class="newsletter__field-lbl">I'm signing up as</label>
+        <div class="newsletter__role">
+          <input type="radio" id="r-trade" name="role" checked/><label for="r-trade">Trade</label>
+          <input type="radio" id="r-retail" name="role"/><label for="r-retail">Home gardener</label>
+          <input type="radio" id="r-design" name="role"/><label for="r-design">Designer</label>
+        </div>
+        <label class="newsletter__field-lbl" for="email-nl">Email address</label>
+        <div class="newsletter__row">
+          <input id="email-nl" type="email" placeholder="you@example.com.au"/>
+          <button class="btn btn-primary btn-sm" type="submit">Subscribe</button>
+        </div>
+        <label class="newsletter__check">
+          <input type="checkbox"/>
+          <span>Send me the trade availability list (PDF) every Monday morning.</span>
+        </label>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <h5>Coastal Native <em>Supply</em></h5>
+      <p>Indigenous and locally adapted plants, grown on the Bellarine for revegetation, landscape, and home gardens.</p>
+      <div class="ic-row">
+        <a aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></a>
+        <a aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a aria-label="Email"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+    <div class="col"><h6>Plants</h6><a>All plants</a><a>Trees</a><a>Shrubs</a><a>Grasses &amp; sedges</a><a>Groundcovers</a><a>Tubestock</a></div>
+    <div class="col"><h6>Trade</h6><a>Availability list</a><a>Contract growing</a><a>Projects supplied</a><a>Trade login</a></div>
+    <div class="col"><h6>The yard</h6><a>Visit us</a><a>Hours &amp; directions</a><a>Journal</a><a>Instagram</a><a>Contact</a></div>
+  </div>
+  <div class="footer__legal">
+    <span>© 2026 Coastal Native Supply Pty Ltd</span>
+    <span>Marshall · Bellarine Peninsula · Wadawurrung Country</span>
+  </div>
+</footer>
+
+<script>
+// Hero slider
+let cur = 0;
+const total = 3;
+const slidesEl = document.getElementById('slides');
+const dots = document.querySelectorAll('.slider-dot');
+const counter = document.getElementById('counter');
+
+function goTo(n){
+  cur = (n + total) % total;
+  slidesEl.style.transform = `translateX(-${cur*100}%)`;
+  dots.forEach((d,i) => d.classList.toggle('active', i===cur));
+  counter.textContent = String(cur+1).padStart(2,'0')+' / '+String(total).padStart(2,'0');
+}
+
+document.getElementById('prev').addEventListener('click', ()=>goTo(cur-1));
+document.getElementById('next').addEventListener('click', ()=>goTo(cur+1));
+
+// Auto-advance
+let timer = setInterval(()=>goTo(cur+1), 5500);
+document.querySelector('.hero-slider').addEventListener('mouseenter',()=>clearInterval(timer));
+document.querySelector('.hero-slider').addEventListener('mouseleave',()=>{ clearInterval(timer); timer=setInterval(()=>goTo(cur+1),5500); });
+
+// Keyboard nav
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft')goTo(cur-1);
+  if(e.key==='ArrowRight')goTo(cur+1);
+});
+</script>
+</body>
+</html>
